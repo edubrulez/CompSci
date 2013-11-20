@@ -1,0 +1,56 @@
+                                                           Erick Nave
+                                                           DS&A II 1:00
+                                                           5-4-94
+                                                           Report for
+                                                             Program 4
+
+                Results of the Testing of Program 4 -- Hashing
+
+     Using the following information in my program I compiled this list of
+
+ results for hashing by division with the collision resolutions of double
+
+ hashing and quadratic resolution both with a fall back on linear probing.
+
+                   Hashing Function:
+                       K mod Table Size
+
+                   Double Hashing Function:
+                       max (1, K div Table Size)
+
+                   Number of keys placed into the table: 90
+
+         Table      Load                   Collisions:
+         Size      Factor      Double Hashing     Quadratic Resolution
+         -----     ------      --------------     --------------------
+          217       .415            20                    30
+          203       .443            25                    17
+          199       .452            14                    15
+          173       .520            48                    61
+          157       .573           109                    70
+          127       .709            38                    52
+          101       .891           128                   117
+
+       Based on these results, I selected double hashing for my program.
+
+Double hashing was not head and shoulders above quadratic resolution though.
+
+The number of collisions were close for some table numbers, with double
+
+hashing performing better than quadratic resolution for some and quadratic
+
+resolution performing better then double hashing for others, so from this
+
+point, there is no winner.  I selected double hashing over quadratic
+
+resolution in this case because there are less math operations performed
+
+in my double hashing algorithm than my quadratic resolution algorithm.
+
+Not not only there were more math operations for quadratic resolution, but
+
+the math was more complex also.  I then examined the number of collisions
+
+for double hashing on my various table sizes and selected the table size
+
+of 199, which worked best for my data set of 90 keys.

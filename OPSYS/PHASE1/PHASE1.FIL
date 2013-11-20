@@ -1,0 +1,42 @@
+#
+#   Use this make file to compile and run phase 1 of your operating
+#   systems project.  Invoke the make file by entering the command
+#   'make -f phase1.file.d'       to run 426T1A
+#   'make -f phase1.file.d run2'  to run 426T1B
+#   'make -f phase1.file.d run3'  to run 426T1C
+#
+run1 : PHASE1A.TEXT.A
+!   GENIPL PHASE1A
+!   IPL 00C STOP
+run2 : PHASE1B.TEXT.A
+!   GENIPL PHASE1B
+!   IPL 00C STOP
+run3 : PHASE1C.TEXT.A
+!   GENIPL PHASE1C
+!   IPL 00C STOP
+PHASE1A.TEXT.A : MEMORY.TEXT.A\
+                426T1A.TEXT.A
+!   EXEC LNKB PHASE1A MEMORY 426T1A SNAP BREAKPT PF\
+                PH1START DUMMY
+PHASE1B.TEXT.A : MEMORY.TEXT.A\
+                426T1B.TEXT.A
+!   EXEC LNKB PHASE1B MEMORY 426T1B SNAP BREAKPT PF\
+                PH1START DUMMY
+PHASE1C.TEXT.A : MEMORY.TEXT.A\
+                426T1C.TEXT.A
+!   EXEC LNKB PHASE1C MEMORY 426T1C SNAP BREAKPT PF\
+                PH1START DUMMY
+426T1A.TEXT.A: 426T1A.C.D MEMORY.H.D
+!   CW 426T1A (ALIGN
+426T1B.TEXT.A: 426T1B.C.D MEMORY.H.D
+!   CW 426T1B (ALIGN
+426T1C.TEXT.A: 426T1C.C.a MEMORY.H.D
+!   CW 426T1C (ALIGN
+MEMORY.TEXT.A : MEMORY.C.A MEMORY.H.D
+!   CW MEMORY (ALIGN PRM STARTMEM 0X2FFEC PRM ENDMEM 0X300000
+#
+#   You should try running your program with STARTMEM immediately
+#   following your own code.  To do so, use this CW command
+#   instead of the one above:
+#
+#   CW MEMORY (ALIGN PRM ENDMEM 0X300000

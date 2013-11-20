@@ -1,0 +1,57 @@
+Trying test cases:
+Opcode NEIN not found
+LDDI   FD80  3
+LCO    FB    2
+ADAL   F6    2
+PSHD   FC00  3
+INSP   F8    2
+Opcode Q not found
+RSH    FFC0  3
+LSH    FF80  3
+LDDR   0     1
+SWPB   FF40  3
+ 
+Opcode table in physical order:
+   0  POPA   FCC0  3
+   1  DESP   F9    2
+   2  LDAR   4     1
+   3  JZER   B     1
+   4  SBDL   F3    2
+   5  POPD   FC40  3
+   6  ADDL   F2    2
+   7  PSHD   FC00  3
+   8  PSHA   FC80  3
+   9  STDL   F1    2
+  10  SBDR   3     1
+  11  PSHI   FD00  3
+  12  ADDR   2     1
+  13  CALL   9     1
+  14  LCO    FB    2
+  15  STDR   1     1
+  16  JUMP   C     1
+  17  INSP   F8    2
+  18  POPI   FD40  3
+  19  LDDI   FD80  3
+  20  LDDL   F0    2
+  21  ANDI   FE00  3
+  22  JNZE   E     1
+  23  SBAL   F7    2
+  24  ORI    FE40  3
+  25  ADAL   F6    2
+  26  LDDR   0     1
+  27  JPOS   A     1
+  28  STAL   F5    2
+  29  SBAR   7     1
+  30  RETN   FEC0  3
+  31  ADAR   6     1
+  32  SWAP   FF00  3
+  33  LSH    FF80  3
+  34  STAR   5     1
+  35  LLA    FA    2
+  36  CLLI   FE80  3
+  37  JNEG   D     1
+  38  SWPB   FF40  3
+  39  LRA    8     1
+  40  LDAL   F4    2
+  41  RSH    FFC0  3
+  42  STDI   FDC0  3

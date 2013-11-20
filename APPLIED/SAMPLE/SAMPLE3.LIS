@@ -1,0 +1,77 @@
+Symbol Table
+Symbol     Value      Type
+------     -----      ----
+M          0000         E
+T          FFF4         A
+U          00C8         A
+V          03E8         A
+W          0BBB         A
+FAR        178D         R
+QQ         1394         R
+AM         1785         R
+ABC        0BBB         D
+GFE        0000         D
+ 
+ 
+Counter   Code    Source Code
+-------   ----    -----------
+  0000            GFE    DS   2000                                                                
+  07D0    882F           LRA  GFE                                                                 
+                         EXT  GFE                                                                 
+  07D1    84B1           LRA  ABC+U                                                               
+  07D2    C000           JUMP QQ                                                                  
+                  *** Relative Address Out of Range
+                         EXT  U                                                                   
+                  *** Undefined Symbol
+                         EXT  ABC                                                                 
+                  *** Undefined Symbol
+  07D3                   DS   1000                                                                
+  0BBB    8000    ABC    LRA  GFE                                                                 
+                  *** Relative Address Out of Range
+                  T      =    -12                                                                 
+                  U      =    200                                                                 
+                  V      =    1000                                                                
+                  W      =    ABC-GFE                                                             
+  0BBC    F400           LDAL T                                                                   
+                  *** Local Address Out of Range
+  0BBD    F6C8           ADAL U                                                                   
+  0BBE    F600           ADAL V                                                                   
+                  *** Local Address Out of Range
+  0BBF    F600           ADAL V-T                                                                 
+                  *** Local Address Out of Range
+  0BC0    4000           LDAR AM                                                                  
+                  *** Relative Address Out of Range
+  0BC1    80C1           LRA  ABC+U                                                               
+                         EXT  ABC                                                                 
+  0BC2    8000           LRA  FAR                                                                 
+                  *** Relative Address Out of Range
+  0BC3    8000           LRA  GFE                                                                 
+                  *** Relative Address Out of Range
+  0BC4                   DS   2000                                                                
+  1394    83F8    QQ     LRA  FAR                                                                 
+  1395    43EF           LDAR AM                                                                  
+  1396    FE80           CLLI                                                                     
+  1397    B823           JZER ABC                                                                 
+  1398                   DS   1000                                                                
+  1780    1394           DC   QQ                                                                  
+  1781    0000           DX   ABC+V                                                               
+                  *** Bad Operand Symbol Declaration for DX
+  1782    0BBB           DC   W                                                                   
+  1783    0000           DC   HELLO                                                               
+                  *** Undefined Symbol
+  1784    0000           DX   V                                                                   
+                  *** Multiply Defined Symbol
+  1785    0000    AM     DX   M                                                                   
+  1786    07D9           DC   QQ-ABC                                                              
+  1787    0000           DC   HELLO-20                                                            
+                  *** Undefined Symbol
+  1788    0BAF           DC   ABC+T                                                               
+  1789    0000           DX                                                                       
+                  *** Operand Missing
+                  *** Bad Operand Symbol Declaration for DX
+  178A    13B6           DC   QQ+34                                                               
+  178B    0000           DC   -QQ                                                                 
+                  *** Illegal Expression
+  178C    0000           DC   GFE+ABC                                                             
+                  *** Illegal Expression
+  178D            FAR    END                                                                      

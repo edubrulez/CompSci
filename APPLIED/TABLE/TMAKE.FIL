@@ -1,0 +1,10 @@
+tdriver: tdriver.text table.text optab.text
+!  global txtlib clib
+!  load tdriver table optab
+!  genmod tdriver
+tdriver.text: tdriver.c
+!  cw tdriver (align
+table.text: table.c table.h
+!  cw table (align
+optab.text: optab.c optab.h
+!  cw optab (align

@@ -1,0 +1,96 @@
+Symbol Table
+Symbol     Value      Type
+------     -----      ----
+G          000A         R
+H          000A         R
+I          000A         R
+OVF        0015         R
+J          000A         R
+K          0002         A
+L          0000         A
+M          0009         A
+N          000A         R
+O          000B         R
+P          000C         R
+Q          0000         E
+R          000D         R
+MAX        FFFF         A
+S          000E         R
+E3         0005         A
+Z          000A         R
+DE3        0003         A
+EQU        0005         A
+QUIT       0016         R
+MIN        8000         A
+MAIN       0000         R
+ABBB       0013         R
+AB         0011         R
+OV         0014         R
+ABCD       0010         R
+ABB        0012         R
+ABC        000F         R
+SUM        0006         R
+A          0007         R
+B          0008         R
+C          0009         D
+D          0001         A
+E          0001         A
+F          000A         R
+ 
+ 
+Counter   Code    Source Code
+-------   ----    -----------
+  0000    0006    MAIN    LDDR    A                                                               
+  0001    2006            ADDR    B                                                               
+  0002    2006            ADDR    C    dr <-- a+b+c                                               
+  0003    1002            STDR    SUM                                                             
+  0004    0000            LDDR    Q                                                               
+                  *** Illegal External Reference
+  0005    0004            LDDR    N                                                               
+                  equ     =       5                                                               
+                  de3     =       3                                                               
+                  e3      =       5                                                               
+                  d       =       1                                                               
+                  max     =       65535                                                           
+                  min     =       -32768                                                          
+  0006            SUM     DS      1                                                               
+  0007            A       DS      1                                                               
+  0008            B       DS      1                                                               
+                          EXT     C                                                               
+                  *** Undefined Symbol
+  0009            C       DS      1                                                               
+                  Z       EXT     C                                                               
+                  E       =       1                                                               
+  000A            F       DS      -A                                                              
+                  *** Illegal Expression
+  000A            G       DS      C+E                                                             
+                  *** Illegal Expression
+  000A            H       DS      C-E                                                             
+                  *** Illegal Expression
+  000A            I       DS      A+B                                                             
+                  *** Illegal Expression
+  000A            J       DS      A-B                                                             
+                  *** Illegal Expression
+                  K       =       E+E                                                             
+                  L       =       E-E                                                             
+                  M       =       C                                                               
+  000A    0000    N       DX      Q                                                               
+  000B    0001    O       DC      E                                                               
+  000C    0000    P       DC      E-E                                                             
+  000D    0002    R       DC      E+E                                                             
+                          EXT     M                                                               
+                  *** Illegal Expression
+  000E    0000    S       DC      Q+C                                                             
+                  *** Illegal External Reference
+  000F    8000    abc     dc      -32768                                                          
+  0010    0000    abcd    dc      -40000                                                          
+                  *** Overflow in Expression
+  0011    7FFF    ab      dc      32767                                                           
+  0012    FFFF    abb     dc      65535                                                           
+  0013    0000    abbb    dc      70000                                                           
+                  *** Overflow in Expression
+  0014    0000    ov      dc      min-1                                                           
+                  *** Overflow in Expression
+  0015    0000    ovf     dc      max+5                                                           
+                  *** Overflow in Expression
+  0016            QUIT    END     MAIN                                                            

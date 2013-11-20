@@ -1,0 +1,9 @@
+MAIN    LDDR    A                                                               
+        ADDR    B                                                               
+        ADDR    C    dr <-- a+b+c                                               
+        STDR    SUM                                                             
+SUM     DS      1                                                               
+A       DS      1                                                               
+B       DS      1                                                               
+C       DS      1                                                               
+        END     MAIN                                                            

@@ -1,0 +1,70 @@
+/********************************************************************/
+/*  PURPOSE:  Math Departmental user PROFILE for logon              */
+/*            initialization.                                       */
+/*                                                                  */
+/*  USER:     Public           OWNER/AUTHOR: Acad. VM Coordinator   */
+/*  REQUIRED FILES: SAMPLE   SYNONYM  H                             */
+/*                  UAPROF   command                                */
+/*  INSTALLED: 22 Dec 1987 (gns)                                    */
+/*  MODIFICATIONS:                                                  */
+/*    24 May 1988 (gns) run UAPROF (was SYSPROF).                   */
+/*    12 JAN 1989 (MJK) REMOVE SOME UN-NEEDED LINES.                */
+/********************************************************************/
+ 
+ Trace Off
+ 
+ Say '... PROFILE EXEC A begins ...'
+ 
+    /*** Access the Standard SYStem PROFile ***/
+ 
+ 'UAPROF'
+ 'SETPRINT LOCAL'
+ 'SYNONYM SAMPLE SYNONYM H'
+ 
+ /* Access the class data and information disk.          */
+ 
+ 'LINK R1MATH 192 1FF RR'
+ 'SET CMSTYPE HT'
+ 'ACCESS 1FF D'
+ 'SET CMSTYPE RT'
+ 
+ /*********************************************************/
+ /* You may customize the PFKeys below by:                */
+ /* 1. Removing them from comments                        */
+ /* 2. Setting them to different commands                 */
+ /*********************************************************/
+ 
+  'SET PF1  IMMED HELP'
+/*  'SET PF13 IMMED HELP'   */
+  'SET PF2  IMMED FILELIST'
+/*  'SET PF14 IMMED FILELIST' */
+/*  'SET PF3  DELAY FILELIST * * '  */
+/*  'SET PF15 DELAY FILELIST * * '  */
+  'SET PF4  IMMED Q DISK'
+/*  'SET PF16 IMMED Q DISK'         */
+  'SET PF5  IMMED Q FILES'
+/*  'SET PF17 IMMED Q FILES'        */
+  'SET PF6  IMMED Q RDR ALL'
+/*  'SET PF18 IMMED Q RDR ALL'      */
+  'SET PF7  IMMED RDRLIST'
+/*  'SET PF19 IMMED RDRLIST'        */
+  'SET PF8  RETRIEVE'
+/*  'SET PF20 RETRIEVE'             */
+/*  'SET PF9  DELAY DUALON '        */
+/*  'SET PF21 DELAY DUALON '        */
+/*  'SET PF10 DELAY DUALOFF'        */
+/*  'SET PF22 DELAY DUALOFF'        */
+  'SET PF11 IMMED MAIL'
+/*  'SET PF23 IMMED MAIL'           */
+  'SET PF12 IMMED LOGOFF'
+ 
+    /*** Check the spool for files ***/
+ 
+ 
+ Say '... PROFILE EXEC A ends ...'
+ 'SLEEP 05 SEC'
+ Say
+ 'FLASH'
+ 'QUERY RDR ALL'
+ 'GLOBALV INIT'  /* ALWAYS LAST! */
+ Exit

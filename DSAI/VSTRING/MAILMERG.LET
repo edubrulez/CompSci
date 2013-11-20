@@ -1,0 +1,54 @@
+1Dr. Margush
+ Acme Publishing
+ 2095867 East One Hundred and Seventy-third Street
+  
+ Dear Jerry;
+  
+    Our company, Mail Merge International (MMI) wishes to introduce you to our newest mail merge technology.  It uses variable length strings to accomplish the impossible.  No more "string length exceeded" errors when running your mail merge program on a form with run-on paragraphs because some stupid ADT implementation forces strings to be less than 256 characters.  VStrings may be nearly any length (up to memory limits, of course)!  As you can see.  This paragraph is rather long, but presents no real difficulties to the mail merge program. Substitution fields may be placed at any point in the paragraph and the built-in string search functions will find them!  A quick replace and voila!  a new paragraph.  Substitution field number 5 follows this sentence: begin here->This is a long substitution field (#5). An interesting thought occurs here... what if a substitution field contains a substitution field... will it be substituted... we will try it here: sub field number 1 here: Dr. Margush. Did it work?  If so, what might happen if we tried to substitute field 5 in field 5? I will not try it!<-end here!  Note that substitution fields are integers enclosed in angle brackets.  If you want to place an angle bracket somewhere in the text that is not a substion field marker, simply type two of them: < for example.  The closing bracket '>' need not be duplicated since it always follows a single openning bracket.  Well this paragraph is long enough.  We will end it with a substitution field number 5: This is a long substitution field (#5). An interesting thought occurs here... what if a substitution field contains a substitution field... will it be substituted... we will try it here: sub field number 1 here: Dr. Margush. Did it work?  If so, what might happen if we tried to substitute field 5 in field 5? I will not try it!
+  
+    Some day we hope to hire a programmer to actually do word wrap. Our documents don't look very good since this has not been implemented yet.  Maybe you, Jerry, could do this for us.  It should be a simple application with all of those nifty VString functions at your disposal.  Simply add a statement to the program to request the max number of characters per line.  Then you can search for the last word that will fit on a line and use the Vsubstr functions to split up the long line into two, one to print, the second to be processed further in case it is too long also.  Of course, you will have to watch out for lines that do not have any spaces in them.  These ought to be split so the first part fills up a line.  Here is a sample of that (assuming the max width is <=80, this section will be too long): ------------------------------------------------------------------------------------------------------------------------ and will have to be split.
+  
+    This is the third paragraph and will involve some substitution fields just for fun: Dr. MargushAcme PublishingThis is a long substitution field (#5). An interesting thought occurs here... what if a substitution field contains a substitution field... will it be substituted... we will try it here: sub field number 1 here: Dr. Margush. Did it work?  If so, what might happen if we tried to substitute field 5 in field 5? I will not try it!P.S. Field 6 is for Postscripts.
+  
+               SincerelyP.S. Field 6 is for Postscripts,
+  
+               Dr. Margush
+  
+ P.P.S Field seven is for post-postscripts
+ 
+1B1
+ B2
+ B3
+  
+ Dear B4;
+  
+    Our company, Mail Merge International (MMI) wishes to introduce you to our newest mail merge technology.  It uses variable length strings to accomplish the impossible.  No more "string length exceeded" errors when running your mail merge program on a form with run-on paragraphs because some stupid ADT implementation forces strings to be less than 256 characters.  VStrings may be nearly any length (up to memory limits, of course)!  As you can see.  This paragraph is rather long, but presents no real difficulties to the mail merge program. Substitution fields may be placed at any point in the paragraph and the built-in string search functions will find them!  A quick replace and voila!  a new paragraph.  Substitution field number 5 follows this sentence: begin here->B5<-end here!  Note that substitution fields are integers enclosed in angle brackets.  If you want to place an angle bracket somewhere in the text that is not a substion field marker, simply type two of them: < for example.  The closing bracket '>' need not be duplicated since it always follows a single openning bracket.  Well this paragraph is long enough.  We will end it with a substitution field number 5: B5
+  
+    Some day we hope to hire a programmer to actually do word wrap. Our documents don't look very good since this has not been implemented yet.  Maybe you, B4, could do this for us.  It should be a simple application with all of those nifty VString functions at your disposal.  Simply add a statement to the program to request the max number of characters per line.  Then you can search for the last word that will fit on a line and use the Vsubstr functions to split up the long line into two, one to print, the second to be processed further in case it is too long also.  Of course, you will have to watch out for lines that do not have any spaces in them.  These ought to be split so the first part fills up a line.  Here is a sample of that (assuming the max width is <=80, this section will be too long): ------------------------------------------------------------------------------------------------------------------------ and will have to be split.
+  
+    This is the third paragraph and will involve some substitution fields just for fun: B1B2B5B6.
+  
+               SincerelyB6,
+  
+               B1
+  
+ B7
+ B8
+1C - Sub 1
+ C - Sub 2 C - Sub 1
+ C - Sub 3 C - Sub 2 C - Sub 1
+  
+ Dear C - Sub 4 C - Sub 3 C - Sub 2 C - Sub 1;
+  
+    Our company, Mail Merge International (MMI) wishes to introduce you to our newest mail merge technology.  It uses variable length strings to accomplish the impossible.  No more "string length exceeded" errors when running your mail merge program on a form with run-on paragraphs because some stupid ADT implementation forces strings to be less than 256 characters.  VStrings may be nearly any length (up to memory limits, of course)!  As you can see.  This paragraph is rather long, but presents no real difficulties to the mail merge program. Substitution fields may be placed at any point in the paragraph and the built-in string search functions will find them!  A quick replace and voila!  a new paragraph.  Substitution field number 5 follows this sentence: begin here->C - Sub 5 C - Sub 4 C - Sub 3 C - Sub 2 C - Sub 1<-end here!  Note that substitution fields are integers enclosed in angle brackets.  If you want to place an angle bracket somewhere in the text that is not a substion field marker, simply type two of them: < for example.  The closing bracket '>' need not be duplicated since it always follows a single openning bracket.  Well this paragraph is long enough.  We will end it with a substitution field number 5: C - Sub 5 C - Sub 4 C - Sub 3 C - Sub 2 C - Sub 1
+  
+    Some day we hope to hire a programmer to actually do word wrap. Our documents don't look very good since this has not been implemented yet.  Maybe you, C - Sub 4 C - Sub 3 C - Sub 2 C - Sub 1, could do this for us.  It should be a simple application with all of those nifty VString functions at your disposal.  Simply add a statement to the program to request the max number of characters per line.  Then you can search for the last word that will fit on a line and use the Vsubstr functions to split up the long line into two, one to print, the second to be processed further in case it is too long also.  Of course, you will have to watch out for lines that do not have any spaces in them.  These ought to be split so the first part fills up a line.  Here is a sample of that (assuming the max width is <=80, this section will be too long): ------------------------------------------------------------------------------------------------------------------------ and will have to be split.
+  
+    This is the third paragraph and will involve some substitution fields just for fun: C - Sub 1C - Sub 2 C - Sub 1C - Sub 5 C - Sub 4 C - Sub 3 C - Sub 2 C - Sub 1C - Sub 6 C - Sub 5 C - Sub 4 C - Sub 3 C - Sub 2 C - Sub 1.
+  
+               SincerelyC - Sub 6 C - Sub 5 C - Sub 4 C - Sub 3 C - Sub 2 C - Sub 1,
+  
+               C - Sub 1
+  
+ 
+ 

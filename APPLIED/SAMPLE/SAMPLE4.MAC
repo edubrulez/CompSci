@@ -1,0 +1,23 @@
+A       =     1                                                                 
+B       =     2                                                                 
+C       =     3                                                                 
+SUM3    LDDL  A                                                                 
+        ADDL  B                                                                 
+        ADDL  C                                                                 
+        RETN                                                                    
+*                                                                               
+X       DS    3                                                                 
+*                                                                               
+MAIN    LRA   X                                                                 
+        PSHA                                                                    
+        LRA   X+1                                                               
+        PSHA                                                                    
+        LRA   X+2                                                               
+        PSHA                                                                    
+        CALL  SUM3                                                              
+        STDR  XSUM                                                              
+        INSP  3                                                                 
+        RETN                                                                    
+*                                                                               
+XSUM    DS    1                                                                 
+        END   MAIN                                                              

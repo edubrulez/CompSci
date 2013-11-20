@@ -1,0 +1,1 @@
+This is the line that is to be reversed.  It is quite long, but it should not present any difficulty for VString datatypes.  Actually, if you can read this, you have succeeded reversing the line because it is stored in reverse in the data file.

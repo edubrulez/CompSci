@@ -1,0 +1,36 @@
+This program has several errors                                                 
+A       =     -1                                                                
+B       =     2                                                                 
+C       =     -3                                                                
+SUM3    LDDL  A                                                                 
+CON     DC    X                                                                 
+DXT     DX    f767&                                                             
+        ADDL  B                                                                 
+3456    QQQ   4     bad label, bad opcode                                       
+        ADDL  C                                                                 
+ALonggggggggggggggggggggggggggggggggggggggLabel                                 
+        RETN                                                                    
+*                                                                               
+X       DS    3                                                                 
+        EXT   X                                                                 
+*                                                                               
+MAIN    LRA   A                                                                 
+        POPQ        bad opcode                                                  
+LOOP                                                                            
+LOOP2   PSHA                                                                    
+        LRA   X+F                                                               
+N12345682920      POPI   bad label                                              
+        PSHA                                                                    
+        LRA   X+2                                                               
+SUM3    DCZ   11         duplicate definition, bad opcode                       
+        PSHA                                                                    
+        CALL  SUM3                                                              
+NZ(2)   JJJI  MAIN       bad label, bad opcode                                  
+        STDR  XSUM                                                              
+        INSP  3                                                                 
+MAIN    LDDL  X           DUPLICATE DEFINITION                                  
+        RETN                                                                    
+*                                                                               
+XSUM    DS    A                                                                 
+        END   MAIN                                                              
+GARBAGE IN, GARBAGE OUT  past end statement, ignored                            

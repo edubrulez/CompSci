@@ -1,0 +1,41 @@
+outport dc  -1                                                                  
+digit ds    10                                                                  
+      dc    21                                                                  
+      dc    0                                                                   
+i     dc    0                                                                   
+c9    dc    9                                                                   
+c1    dc    1                                                                   
+c10   dc    10                                                                  
+c240  dc    240                                                                 
+code  lra   digit                                                               
+      lddr  i                                                                   
+loop  sbdr  c10                                                                 
+      jpos  done                                                                
+      lddr  i                                                                   
+      addr  c240                                                                
+      stdi                                                                      
+      adar  c1                                                                  
+      lddr  i                                                                   
+      addr  c1                                                                  
+      stdr  i                                                                   
+      jump  loop                                                                
+done  lra   digit                                                               
+      psha                                                                      
+      call pstring                                                              
+      insp  1                                                                   
+      retn                                                                      
+*                                                                               
+pstring                                                                         
+      ext   pstring                                                             
+s     =     1                                                                   
+      ldal  s                                                                   
+ploop lddi                                                                      
+      jzer  doneps                                                              
+      ldar  outport                                                             
+      stdi                                                                      
+      ldal  s                                                                   
+      adar  c1                                                                  
+      stal  s                                                                   
+      jump  ploop                                                               
+doneps retn                                                                     
+      end   code                                                                

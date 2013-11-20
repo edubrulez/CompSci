@@ -1,0 +1,37 @@
+Symbol Table
+Symbol     Value      Type
+------     -----      ----
+G          00A6         R
+UOFAKRON   0000         E
+ALPHA      0000         E
+BETA       0000         E
+MAIN       0036         D
+SUM        003A         D
+A          003B         R
+B          003C         R
+C          00A0         R
+D          00A1         D
+F          00A5         R
+ 
+ 
+Counter   Code    Source Code
+-------   ----    -----------
+  0000                    DS      54                                                              
+  0036    0004    MAIN    LDDR    A                                                               
+  0037    2004            ADDR    B                                                               
+  0038    2067            ADDR    C    dr <-- a+b+c                                               
+  0039    1000            STDR    SUM                                                             
+  003A            SUM     DS      1                                                               
+  003B            A       DS      1                                                               
+  003C            B       DS      100                                                             
+  00A0            C       DS      1                                                               
+                          EXT     SUM                                                             
+  00A1    0000    D       DX      ALPHA                                                           
+  00A2    0066            DC      C-SUM                                                           
+  00A3    00A8            DC      C+8                                                             
+                          EXT     MAIN                                                            
+  00A4    0098            DC      C-8                                                             
+  00A5    0000    F       DX      BETA                                                            
+                          EXT     D                                                               
+  00A6    0000    G       DX      UOFAKRON                                                        
+  00A7                    END     MAIN                                                            

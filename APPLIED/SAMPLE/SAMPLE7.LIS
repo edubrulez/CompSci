@@ -1,0 +1,39 @@
+Symbol Table
+Symbol     Value      Type
+------     -----      ----
+G          00EB         R
+UOFAKRON   0000         E
+ALPHA      0000         E
+BETA       0000         E
+MAIN       0036         D
+SUM        005C         D
+A          005D         R
+B          0081         R
+C          00E5         R
+D          00E6         D
+F          00EA         R
+ 
+ 
+Counter   Code    Source Code
+-------   ----    -----------
+  0000                    DS      54                                                              
+  0036    0026    MAIN    LDDR    A                                                               
+  0037                    ds      34                                                              
+  0059    2027            ADDR    B                                                               
+  005A    208A            ADDR    C    dr <-- a+b+c                                               
+  005B    1000            STDR    SUM                                                             
+  005C            SUM     DS      1                                                               
+  005D            A       DS      35                                                              
+  0080    0FDC            lddr    a                                                               
+  0081            B       DS      100                                                             
+  00E5            C       DS      1                                                               
+                          EXT     SUM                                                             
+  00E6    0000    D       DX      ALPHA                                                           
+  00E7    0089            DC      C-SUM                                                           
+  00E8    00ED            DC      C+8                                                             
+                          EXT     MAIN                                                            
+  00E9    00DD            DC      C-8                                                             
+  00EA    0000    F       DX      BETA                                                            
+                          EXT     D                                                               
+  00EB    0000    G       DX      UOFAKRON                                                        
+  00EC                    END     MAIN                                                            

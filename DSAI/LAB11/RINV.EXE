@@ -1,0 +1,6 @@
+/* use this to run inventory update 3*/
+arg transfile
+'make (file makeinv.file'
+if rc <> 0 then exit
+say 'Running inventory update with transaction file' transfile
+'start *' transfile

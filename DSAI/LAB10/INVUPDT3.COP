@@ -1,0 +1,16 @@
+{constants and types needed to specify ListData for use by                      
+  application and Ordered list ADT}                                             
+                                                                                
+ const                                                                          
+  DescriptionLength = 15;                                                       
+  PartNumberLength = 7;                                                         
+type                                                                            
+  DescriptionType = Packed Array[1..DescriptionLength] of Char;                 
+  PartNumberType = Packed Array[1..PartNumberLength] of Char;                   
+  PartType = packed record                                                      
+              PartNumber:PartNumberType;                                        
+              Quantity:Integer;                                                 
+              Price:Real;                                                       
+              Description:DescriptionType                                       
+             end;                                                               
+  ListData = PartType;  {ListData is defined for use by ADT}                    

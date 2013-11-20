@@ -1,0 +1,639 @@
+================================================================================
+==
+== STUDENT IS C17050
+==
+== Submit date: C17050 Thursday 1 Feb 1996 13:27:57
+==
+== PHASE1 DONALDSON R1JOHN C
+==
+     NO FILES PURGED
+     NO FILES PURGED
+     NO FILES PURGED
+     NO FILES PURGED
+Waterloo C (Version 3.3 IBM 370)
+File 'memory c a1': 142 lines, included 159, no errors
+Waterloo C (Version 3.3 IBM 370)
+File 'memory c a1': 142 lines, included 159, no errors
+lcb 1000 16 PHASE1A 426T1A PH1GRADE MEMORY SNAP BREAKPT PF CPCMD DUMMY
+lcb 1000 16 PHASE1B 426T1B PH1GRADE MEMORY SNAP BREAKPT PF CPCMD DUMMY
+lcb 1000 16 PHASE1C 426T1C PH1GRADE MEMORY SNAP BREAKPT PF CPCMD DUMMY
+lcb 1000 16 PHASE1D 426T1C PH1GRADE MEM1   SNAP BREAKPT PF CPCMD DUMMY
+     NO FILES PURGED
+0000001 FILE  CHANGED
+     NO FILES PURGED
+0000001 FILE  CHANGED
+     NO FILES PURGED
+0000001 FILE  CHANGED
+####################### START OF PHASE ###
+ 
+ 
+Current contents of free space list: dump no 1
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030000
+ 030000  0D0000  000000
+ 
+ 
+Current contents of free space list: dump no 2
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030880
+ 030880  0CF780  000000
+ 
+ 
+Current contents of free space list: dump no 3
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  032880
+ 032880  0CD780  000000
+ 
+ 
+Current contents of free space list: dump no 4
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  032E80
+ 032E80  0CD180  000000
+ 
+ 
+Current contents of free space list: dump no 5
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  037E80
+ 037E80  0C8180  000000
+ 
+ 
+Current contents of free space list: dump no 6
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  038000
+ 038000  0C8000  000000
+ 
+ 
+Current contents of free space list: dump no 7
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030880
+ 030880  002000  038000
+ 038000  0C8000  000000
+ 
+ 
+Current contents of free space list: dump no 8
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030880
+ 030880  002000  037E80
+ 037E80  0C8180  000000
+ 
+ 
+Current contents of free space list: dump no 9
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030880
+ 030880  002600  037E80
+ 037E80  0C8180  000000
+ 
+ 
+Current contents of free space list: dump no 10
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030880
+ 030880  0CF780  000000
+ 
+ 
+Current contents of free space list: dump no 11
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030000
+ 030000  0D0000  000000
+TEST PROGRAM FINISHED! THIS PHASE ENDING!!
+CP entered; program interrupt loop
+I CMS
+Unable to access the Y-disk. Filemode Y (19E) not accessed
+VM/ESA REL. 2.1 07/03/94 05:23
+ 
+D (192) R/O
+Shared Y-STAT not available
+You have MAIL.  To read your mail, type:  MAIL
+... PROFILE EXEC A begins ...
+*** You are logged onto a terminal that is unknown to SETPRINT.
+    Printer destination is NOT set.  Set printer before printing.
+Your printer is set to OFF.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* NOTE: Print commands will not work properly until you set   *
+*       your printer.  Use SETPRINT command before printing.  *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+C (192) R/O
+192 also = B disk
+The PROD version of the WATC package is now linked as your E(44C)-disk.
+... PROFILE EXEC A ends ...
+ 
+R2LFJ
+ 
+ORIGINID FILE CLASS RECORDS  CPY HOLD DATE  TIME     NAME      TYPE     DIST
+R2LFJ    0181 I PUN 00000138 001 NONE OPEN- 000C     PHASE1A   TEXT     R2LFJ
+R2LFJ    0180 2 PUN 00000144 001 NONE 02/05 18:27:31 PHASE1D   TEXT     R2LFJ
+R2LFJ    0179 1 PUN 00000144 001 NONE 02/05 18:27:30 PHASE1C   TEXT     R2LFJ
+R2LFJ    0178 0 PUN 00000140 001 NONE 02/05 18:27:30 PHASE1B   TEXT     R2LFJ
+Ready;
+nextrun
+Ready;
+####################### START OF PHASE ###
+ 
+ 
+Current contents of free space list: dump no 1
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030000
+ 030000  0D0000  000000
+030000
+0303D0
+030770
+030AE0
+030E20
+031130
+031400
+0316A0
+031910
+031B50
+031D60
+031F40
+0320F0
+032270
+0323B0
+0324C0
+0325A0
+032650
+0326D0
+032720
+ 
+ 
+Current contents of free space list: dump no 2
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  032740
+ 032740  0CD8C0  000000
+ 
+ 
+Current contents of free space list: dump no 3
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030000
+ 030000  0003D0  030AE0
+ 030AE0  000340  031400
+ 031400  0002A0  031B50
+ 031B50  000210  0320F0
+ 0320F0  000180  0324C0
+ 0324C0  0000E0  0326D0
+ 0326D0  000050  032740
+ 032740  0CD8C0  000000
+ 
+ 
+Current contents of free space list: dump no 4
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030270
+ 030270  000160  030DA0
+ 030DA0  000080  031400
+ 031400  0002A0  031B50
+ 031B50  0003F0  0320F0
+ 0320F0  000180  0324C0
+ 0324C0  0000E0  0326D0
+ 0326D0  000050  032740
+ 032740  0CD8C0  000000
+ 
+ 
+Current contents of free space list: dump no 5
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  0303B0
+ 0303B0  000020  030DF0
+ 030DF0  000030  031400
+ 031400  0002A0  031B50
+ 031B50  000720  0323B0
+ 0323B0  0001F0  0326D0
+ 0326D0  000050  032740
+ 032740  0CD8C0  000000
+ 
+ 
+Current contents of free space list: dump no 6
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030000
+ 030000  0003D0  030AE0
+ 030AE0  000340  031400
+ 031400  0002A0  031B50
+ 031B50  000720  0323B0
+ 0323B0  0001F0  0326D0
+ 0326D0  000050  032740
+ 032740  0CD8C0  000000
+ 
+ 
+Current contents of free space list: dump no 7
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030000
+ 030000  0003D0  030770
+ 030770  0006B0  031130
+ 031130  000570  031910
+ 031910  000960  0323B0
+ 0323B0  0001F0  032650
+ 032650  0000D0  032740
+ 032740  0CD8C0  000000
+ 
+ 
+Current contents of free space list: dump no 8
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030000
+ 030000  0003D0  030770
+ 030770  0006B0  031130
+ 031130  000570  031910
+ 031910  0CE6F0  000000
+ 
+ 
+Current contents of free space list: dump no 9
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030000
+ 030000  0D0000  000000
+TEST PROGRAM FINISHED! THIS PHASE ENDING!!
+CP entered; program interrupt loop
+I CMS
+Unable to access the Y-disk. Filemode Y (19E) not accessed
+VM/ESA REL. 2.1 07/03/94 05:23
+ 
+D (192) R/O
+Shared Y-STAT not available
+... PROFILE EXEC A begins ...
+*** You are logged onto a terminal that is unknown to SETPRINT.
+    Printer destination is NOT set.  Set printer before printing.
+Your printer is set to OFF.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* NOTE: Print commands will not work properly until you set   *
+*       your printer.  Use SETPRINT command before printing.  *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+C (192) R/O
+192 also = B disk
+The PROD version of the WATC package is now linked as your E(44D)-disk.
+... PROFILE EXEC A ends ...
+ 
+R2LFJ
+ 
+ORIGINID FILE CLASS RECORDS  CPY HOLD DATE  TIME     NAME      TYPE     DIST
+R2LFJ    0180 2 PUN 00000144 001 NONE 02/05 18:27:31 PHASE1D   TEXT     R2LFJ
+R2LFJ    0179 1 PUN 00000144 001 NONE 02/05 18:27:30 PHASE1C   TEXT     R2LFJ
+R2LFJ    0178 I PUN 00000140 001 NONE OPEN- 000C     PHASE1B   TEXT     R2LFJ
+Ready;
+nextrun
+Ready;
+####################### START OF PHASE ###
+ 
+ 
+Current contents of free space list: dump no 1
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030000
+ 030000  0D0000  000000
+00030000
+000303D0
+00030770
+00030AE0
+00030E20
+00031130
+00031400
+000316A0
+00031910
+00031B50
+00031D60
+00031F40
+000320F0
+00032270
+000323B0
+000324C0
+000325A0
+00032650
+000326D0
+00032720
+ 
+ 
+Current contents of free space list: dump no 2
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  032740
+ 032740  0CD8C0  000000
+ 
+ 
+Current contents of free space list: dump no 3
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030000
+ 030000  0003D0  030AE0
+ 030AE0  000340  031400
+ 031400  0002A0  031B50
+ 031B50  000210  0320F0
+ 0320F0  000180  0324C0
+ 0324C0  0000E0  0326D0
+ 0326D0  000050  032740
+ 032740  0CD8C0  000000
+ 
+ 
+Current contents of free space list: dump no 4
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030000
+ 030000  0003D0  030AE0
+ 030AE0  000340  031400
+ 031400  0002A0  031B50
+ 031B50  000210  0320F0
+ 0320F0  000180  0324C0
+ 0324C0  0000E0  0326D0
+ 0326D0  000050  032B40
+ 032B40  0CD4C0  000000
+ 
+ 
+Current contents of free space list: dump no 5
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030000
+ 030000  0003D0  030AE0
+ 030AE0  000340  031400
+ 031400  0002A0  031B50
+ 031B50  000210  0320F0
+ 0320F0  000180  0324C0
+ 0324C0  0000E0  0326D0
+ 0326D0  000050  032F40
+ 032F40  0CD0C0  000000
+ 
+ 
+Current contents of free space list: dump no 6
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030000
+ 030000  0003D0  030AE0
+ 030AE0  000340  031400
+ 031400  0002A0  031B50
+ 031B50  0003F0  0320F0
+ 0320F0  000180  0324C0
+ 0324C0  0000E0  0326D0
+ 0326D0  000050  032F40
+ 032F40  0CD0C0  000000
+ 
+ 
+Current contents of free space list: dump no 7
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030010
+ 030010  0003C0  030AE0
+ 030AE0  000340  031400
+ 031400  0002A0  031B50
+ 031B50  0003F0  0320F0
+ 0320F0  000180  0323B0
+ 0323B0  0001F0  0326D0
+ 0326D0  000050  032B40
+ 032B40  0CD4C0  000000
+ 
+ 
+Current contents of free space list: dump no 8
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030010
+ 030010  0003C0  030AE0
+ 030AE0  000340  031400
+ 031400  0002A0  031B50
+ 031B50  000720  0323B0
+ 0323B0  0001F0  0326D0
+ 0326D0  000050  032B40
+ 032B40  0CD4C0  000000
+ 
+ 
+Current contents of free space list: dump no 9
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030310
+ 030310  0000C0  030C20
+ 030C20  000200  031400
+ 031400  0002A0  031B50
+ 031B50  000720  0323B0
+ 0323B0  0001F0  0326D0
+ 0326D0  000050  032B40
+ 032B40  0CD4C0  000000
+ 
+ 
+Current contents of free space list: dump no 10
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030000
+ 030000  0003D0  030AE0
+ 030AE0  000340  031400
+ 031400  0002A0  031B50
+ 031B50  000720  0323B0
+ 0323B0  0001F0  0326D0
+ 0326D0  000050  032740
+ 032740  0CD8C0  000000
+ 
+ 
+Current contents of free space list: dump no 11
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030000
+ 030000  0003D0  030770
+ 030770  0006B0  031130
+ 031130  000570  031910
+ 031910  000960  0323B0
+ 0323B0  0001F0  032650
+ 032650  0000D0  032740
+ 032740  0CD8C0  000000
+ 
+ 
+Current contents of free space list: dump no 12
+  ADDR   LENGTH   NEXT
+ 02FFF0  000000  030000
+ 030000  0D0000  000000
+TEST PROGRAM FINISHED! THIS PHASE ENDING!!
+CP entered; program interrupt loop
+I CMS
+Unable to access the Y-disk. Filemode Y (19E) not accessed
+VM/ESA REL. 2.1 07/03/94 05:23
+ 
+D (192) R/O
+Shared Y-STAT not available
+... PROFILE EXEC A begins ...
+*** You are logged onto a terminal that is unknown to SETPRINT.
+    Printer destination is NOT set.  Set printer before printing.
+Your printer is set to OFF.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* NOTE: Print commands will not work properly until you set   *
+*       your printer.  Use SETPRINT command before printing.  *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+C (192) R/O
+192 also = B disk
+The PROD version of the WATC package is now linked as your E(44E)-disk.
+... PROFILE EXEC A ends ...
+ 
+R2LFJ
+ 
+ORIGINID FILE CLASS RECORDS  CPY HOLD DATE  TIME     NAME      TYPE     DIST
+R2LFJ    0180 2 PUN 00000144 001 NONE 02/05 18:27:31 PHASE1D   TEXT     R2LFJ
+R2LFJ    0179 I PUN 00000144 001 NONE OPEN- 000C     PHASE1C   TEXT     R2LFJ
+Ready;
+nextrun
+Ready;
+####################### START OF PHASE ###
+ 
+ 
+Current contents of free space list: dump no 1
+  ADDR   LENGTH   NEXT
+ 002640  000000  002650
+ 002650  2FD9B0  000000
+00002650
+00002A20
+00002DC0
+00003130
+00003470
+00003780
+00003A50
+00003CF0
+00003F60
+000041A0
+000043B0
+00004590
+00004740
+000048C0
+00004A00
+00004B10
+00004BF0
+00004CA0
+00004D20
+00004D70
+ 
+ 
+Current contents of free space list: dump no 2
+  ADDR   LENGTH   NEXT
+ 002640  000000  004D90
+ 004D90  2FB270  000000
+ 
+ 
+Current contents of free space list: dump no 3
+  ADDR   LENGTH   NEXT
+ 002640  000000  002650
+ 002650  0003D0  003130
+ 003130  000340  003A50
+ 003A50  0002A0  0041A0
+ 0041A0  000210  004740
+ 004740  000180  004B10
+ 004B10  0000E0  004D20
+ 004D20  000050  004D90
+ 004D90  2FB270  000000
+ 
+ 
+Current contents of free space list: dump no 4
+  ADDR   LENGTH   NEXT
+ 002640  000000  002650
+ 002650  0003D0  003130
+ 003130  000340  003A50
+ 003A50  0002A0  0041A0
+ 0041A0  000210  004740
+ 004740  000180  004B10
+ 004B10  0000E0  004D20
+ 004D20  000050  005190
+ 005190  2FAE70  000000
+ 
+ 
+Current contents of free space list: dump no 5
+  ADDR   LENGTH   NEXT
+ 002640  000000  002650
+ 002650  0003D0  003130
+ 003130  000340  003A50
+ 003A50  0002A0  0041A0
+ 0041A0  000210  004740
+ 004740  000180  004B10
+ 004B10  0000E0  004D20
+ 004D20  000050  005590
+ 005590  2FAA70  000000
+ 
+ 
+Current contents of free space list: dump no 6
+  ADDR   LENGTH   NEXT
+ 002640  000000  002650
+ 002650  0003D0  003130
+ 003130  000340  003A50
+ 003A50  0002A0  0041A0
+ 0041A0  0003F0  004740
+ 004740  000180  004B10
+ 004B10  0000E0  004D20
+ 004D20  000050  005590
+ 005590  2FAA70  000000
+ 
+ 
+Current contents of free space list: dump no 7
+  ADDR   LENGTH   NEXT
+ 002640  000000  002660
+ 002660  0003C0  003130
+ 003130  000340  003A50
+ 003A50  0002A0  0041A0
+ 0041A0  0003F0  004740
+ 004740  000180  004A00
+ 004A00  0001F0  004D20
+ 004D20  000050  005190
+ 005190  2FAE70  000000
+ 
+ 
+Current contents of free space list: dump no 8
+  ADDR   LENGTH   NEXT
+ 002640  000000  002660
+ 002660  0003C0  003130
+ 003130  000340  003A50
+ 003A50  0002A0  0041A0
+ 0041A0  000720  004A00
+ 004A00  0001F0  004D20
+ 004D20  000050  005190
+ 005190  2FAE70  000000
+ 
+ 
+Current contents of free space list: dump no 9
+  ADDR   LENGTH   NEXT
+ 002640  000000  002960
+ 002960  0000C0  003270
+ 003270  000200  003A50
+ 003A50  0002A0  0041A0
+ 0041A0  000720  004A00
+ 004A00  0001F0  004D20
+ 004D20  000050  005190
+ 005190  2FAE70  000000
+ 
+ 
+Current contents of free space list: dump no 10
+  ADDR   LENGTH   NEXT
+ 002640  000000  002650
+ 002650  0003D0  003130
+ 003130  000340  003A50
+ 003A50  0002A0  0041A0
+ 0041A0  000720  004A00
+ 004A00  0001F0  004D20
+ 004D20  000050  004D90
+ 004D90  2FB270  000000
+ 
+ 
+Current contents of free space list: dump no 11
+  ADDR   LENGTH   NEXT
+ 002640  000000  002650
+ 002650  0003D0  002DC0
+ 002DC0  0006B0  003780
+ 003780  000570  003F60
+ 003F60  000960  004A00
+ 004A00  0001F0  004CA0
+ 004CA0  0000D0  004D90
+ 004D90  2FB270  000000
+ 
+ 
+Current contents of free space list: dump no 12
+  ADDR   LENGTH   NEXT
+ 002640  000000  002650
+ 002650  2FD9B0  000000
+TEST PROGRAM FINISHED! THIS PHASE ENDING!!
+CP entered; program interrupt loop
+I CMS
+Unable to access the Y-disk. Filemode Y (19E) not accessed
+VM/ESA REL. 2.1 07/03/94 05:23
+ 
+D (192) R/O
+Shared Y-STAT not available
+... PROFILE EXEC A begins ...
+*** You are logged onto a terminal that is unknown to SETPRINT.
+    Printer destination is NOT set.  Set printer before printing.
+Your printer is set to OFF.
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* NOTE: Print commands will not work properly until you set   *
+*       your printer.  Use SETPRINT command before printing.  *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+C (192) R/O
+192 also = B disk
+The PROD version of the WATC package is now linked as your E(44F)-disk.
+... PROFILE EXEC A ends ...
+ 
+R2LFJ
+ 
+ORIGINID FILE CLASS RECORDS  CPY HOLD DATE  TIME     NAME      TYPE     DIST
+R2LFJ    0180 I PUN 00000144 001 NONE OPEN- 000C     PHASE1D   TEXT     R2LFJ
+Ready;
+nextrun
+Ready(00001);
+420 replaces E (44F)
+E (420) R/O
+450 replaces A (191)
+GRADING ENVIRONMENT RESTORED
+PROCEEDING WITH CLEANUP
+Ready;
+191 replaces B (192)
+Ready;
+Ready;
+Ready;

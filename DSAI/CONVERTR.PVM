@@ -1,0 +1,137 @@
+PROGRAM SwitchBases;{input,output}
+ 
+{Erick Nave
+ DS&A1 9-21-93 9:00
+ SwitchBases prompts the user to enter a base in which the corresponding
+     string is the number in that base, the base that the string is to
+     be converted to, and the string itself.  Then through a recursive
+     function to change the string into an integer and a recursive
+     procedure to change the integer into the base requested by the
+     user.  The results are displayed.}
+ 
+% INCLUDE CMS;
+ 
+TYPE
+  StringNumberType = STRING(31); {the number to be converted. 31 is the
+                                       maximum length.}
+ 
+FUNCTION Upper(ch:char): char;
+  {Upper returns the upper case of a lower case character.}
+  BEGIN
+    Upper:= chr(ord(ch) - ord('a') + ord('A'))
+  END; {Upper}
+ 
+FUNCTION Hex2Number(Hex:CHAR): INTEGER;
+  {Hex2Number takes the letter A - F and gives it a value}
+  BEGIN
+    CASE Hex of
+      'A': Hex2Number:= 10;
+      'B': Hex2Number:= 11;
+      'C': Hex2Number:= 12;
+      'D': Hex2Number:= 13;
+      'E': Hex2Number:= 14;
+      'F': Hex2Number:= 15
+    END
+  END; {Hex2Number}
+ 
+FUNCTION Str2Integer (InBase:Integer; Numeral:StringNumberType):INTEGER;
+  {Str2Integer takes the string number (Numeral) and converts it to
+     an integer recursively using InBase.  It also determines if the
+     number entered is valid, that is having the individual digits
+     being [2..F] and less than InBase. If not, an error message is
+     displayed telling the user that the number was wrong and to
+     ignore the answer because there is still a number dealing with
+     the digits processed before the error digit.}
+  VAR strlen, num: INTEGER; {strlen is the length of the string}
+                            {num is either the number in that part of
+                               the string or the number equivalent of
+                               a hex digit}
+    ok: BOOLEAN; {prevents the possibility of an error message being
+                       printed twice}
+  BEGIN
+    ok:= true;
+    strlen:= length(Numeral);
+    IF numeral[strlen] in ['a'..'z'] then
+      numeral[strlen]:= Upper(numeral[strlen]);
+    IF numeral[strlen] in ['A'..'F'] then
+      num:= Hex2Number(numeral[strlen])
+    ELSE
+      IF numeral[strlen] in ['0'..'9'] then
+        num:= Ord(numeral[strlen]) - Ord('0')
+      ELSE
+       BEGIN
+          num:= InBase + 1;
+          WRITELN ('Invalid number. Ignore answer and Try again.');
+          ok:= false
+       END;
+    IF num < InBase then
+      IF strlen = 1 then
+        Str2Integer:= num
+      ELSE
+        Str2Integer:= Str2Integer(InBase,substr(numeral, 1, strlen-1))
+               * InBase + num
+    ELSE
+        BEGIN
+          IF ok then
+            WRITELN('Invalid number. Ignore answer and Try again.');
+          Str2Integer:= 0  {end recursion}
+        END
+  END; {Str2Integer}
+ 
+PROCEDURE WriteOutBaseNum(OutBase, num: INTEGER);
+  {WriteOutBaseNum uses a recursive formula to change the decimial
+     number (num) into the base desired by the user (OutBase).}
+  BEGIN
+    IF num >= OutBase then
+        WriteOutBaseNum(OutBase, num div OutBase);
+    IF (num mod OutBase) > 9 then
+      CASE (num mod OutBase) of
+        10: WRITE ('A':1);
+        11: WRITE ('B':1);
+        12: WRITE ('C':1);
+        13: WRITE ('D':1);
+        14: WRITE ('E':1);
+        15: WRITE ('F':1)
+      END
+    ELSE
+      WRITE (num mod OutBase:1)
+  END; {WriteOutBaseNum}
+ 
+VAR
+  InBase, OutBase, clear: INTEGER;
+     {InBase is the base of the input number. OutBase is the base of
+        the desired output. Clear is the return code for a CMS command.}
+  Number: StringNumberType; {The string number to be converted.}
+ 
+BEGIN {main}
+  {main asks the user for InBase, OutBase, and the number then checks to
+      see if the Bases are valid.  If they are, then WriteOutBaseNum
+      is called to write the number in OutBase.  One of the parameters
+      is a Str2Integer, a recursive function changing the string number
+      into an integer for use in WriteOutBaseNum.  It also checks if
+      InBase and OutBase are valid, that is [2..16].  If not, an error
+      message is displayed and WriteOutBaseNum is not called.}
+  TERMIN (input);
+  TERMOUT (output);
+  CMS ('vmfclear', clear);
+  WRITELN ('Please enter the base that your  number is in, followed');
+  WRITELN ('by a space, then the desired base, another space, then');
+  WRITELN ('the positive number in your base.  The base must be');
+  WRITELN ('[2..16].  Give a 0 for your base to quit.');
+  WRITELN;
+  READLN (InBase, OutBase, Number);
+  WHILE InBase <> 0 do
+    BEGIN
+      Number:= LTRIM (Number);
+      IF (InBase in [2..16]) and (OutBase in [2..16]) then
+        BEGIN
+          WRITE('= ':5);
+          WriteOutBaseNum(OutBase, Str2Integer(InBase, Number))
+        END
+      ELSE
+        WRITELN ('Invalid InBase or OutBase. Try Again.');
+      WRITELN;
+      WRITELN;
+      READLN (InBase, OutBase, Number);
+    END
+END. {SwitchBases}

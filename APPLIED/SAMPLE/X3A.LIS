@@ -1,0 +1,65 @@
+Symbol Table
+Symbol     Value      Type
+------     -----      ----
+I          0000         A
+S1         000C         D
+BLOOP      000F         R
+C10        0024         R
+C20        0025         R
+C30        0026         R
+ABA        0000         R
+ABC        0001         R
+A          0000         E
+B          0002         D
+C          0000         E
+ 
+ 
+Counter   Code    Source Code
+-------   ----    -----------
+  0000    0000    aba  dx    a                                                                    
+  0001    0000    abc  dx    c                                                                    
+  0002    000A    b    dc    10                                                                   
+  0003    0022         dc    34                                                                   
+  0004    FC19         dc    -999                                                                 
+  0005    001D         dc    29                                                                   
+  0006    FFA4         dc    -92                                                                  
+  0007    FFFF         dc    -1                                                                   
+  0008    0000         dc    0                                                                    
+  0009    F830         dc    -2000                                                                
+  000A    FC04         dc    -1020                                                                
+  000B    1538         dc    5432                                                                 
+                       ext   b                                                                    
+                  i    =     0                                                                    
+  000C            s1                                                                              
+                       ext   s1                                                                   
+  000C    F901         desp  1                                                                    
+  000D    FB00         lco   0                                                                    
+  000E    F100         stdl  i                                                                    
+  000F    8FF2    bloop lra  b                                                                    
+  0010    F600          adal i                                                                    
+  0011    FD80          lddi                                                                      
+  0012    4FED          ldar aba                                                                  
+  0013    F600          adal i                                                                    
+  0014    6010          adar c20                                                                  
+  0015    FDC0          stdi                                                                      
+  0016    4FEA          ldar abc                                                                  
+  0017    F600          adal i                                                                    
+  0018    FD80          lddi                                                                      
+  0019    4FE6          ldar aba                                                                  
+  001A    F600          adal i                                                                    
+  001B    600A          adar c30                                                                  
+  001C    FDC0          stdi                                                                      
+  001D    FB01          lco 1                                                                     
+  001E    F200          addl i                                                                    
+  001F    F100          stdl i                                                                    
+  0020    3003          sbdr c10                                                                  
+  0021    DFED          jneg bloop                                                                
+  0022    F801          insp 1                                                                    
+  0023    FEC0          retn                                                                      
+  0024    000A    c10   dc   10                                                                   
+  0025    0014    c20   dc   20                                                                   
+  0026    001E    c30   dc   30                                                                   
+  0027            C30
+                  *** Multiply Defined Symbol
+  0027            C30
+                  *** Multiply Defined Symbol

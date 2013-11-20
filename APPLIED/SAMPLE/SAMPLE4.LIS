@@ -1,0 +1,35 @@
+Symbol Table
+Symbol     Value      Type
+------     -----      ----
+PRGSTART   0190         R
+FAR        0198         R
+SUB1       0000         E
+SUB2       0000         E
+GFE2       00C8         D
+GFE        0000         D
+A1         0196         R
+A2         0197         R
+ 
+ 
+Counter   Code    Source Code
+-------   ----    -----------
+  0000            GFE    DS   400                                                                 
+                  GFE2   =    GFE+200                                                             
+  0190    0ED3    PRGSTART  LDDR  GFE+100                                                         
+  0191    2ED2              ADDR  GFE2-100                                                        
+  0192    0000              ADDR  50+GFE                                                          
+                  *** Illegal Expression
+                            =     PRGSTART                                                        
+                  *** Invalid Label
+  0193    0000              ADDR  50-GFE                                                          
+                  *** Illegal Expression
+  0194    1064              STDR  100                                                             
+                  A    EXT  GFE2                                                                  
+                  *** Unexpected Label
+                  B    EXT  GFE                                                                   
+                  *** Unexpected Label
+  0195    0000         DX   GFE                                                                   
+                  *** Multiply Defined Symbol
+  0196    0000    A1   DX   SUB1                                                                  
+  0197    0000    A2   DX   SUB2                                                                  
+  0198            FAR    END  PRGSTART                                                            

@@ -1,0 +1,4 @@
+/* use this to run postfix - prog 6*/
+'make (file postfix.makefile'
+if rc <> 0 then exit
+'start'

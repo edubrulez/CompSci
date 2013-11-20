@@ -1,0 +1,24 @@
+PROG3   SEGM                                                                    
+A       DS     100     Integer array                                            
+LEN     DS     1       length of array                                          
+K       DS     1       LOOP COUNTER                                             
+ONE     DC     1       CONSTANT 1                                               
+SUM     DS     1       STORE SUM HERE                                           
+*                                                                               
+MAIN    LCO    0       STARTING LOCATION                                        
+        STDR   SUM     SUM=0                                                    
+        LCO    1                                                                
+        STDR   K       K=1                                                      
+        LRA    A       AR <-- ADDRESS OF ARRAY                                  
+LP      LDDR   LEN                                                              
+        SBDR   K                                                                
+        JNEG   EXLP    WHILE K<=LEN                                             
+        LDDI           DR <-- CURRENT ARRAY ELEMENT                             
+        ADDR   SUM                                                              
+        STDR   SUM     SUM = SUM + CURRENT ARRAY ELEMENT                        
+        ADAR   ONE     ADVANCE TO NEXT ELEMENT                                  
+        LCO    1                                                                
+        ADDR   K                                                                
+        STDR   K       K=K+1                                                    
+        JUMP   LP      END OF WHILE                                             
+        END    MAIN                                                             

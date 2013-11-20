@@ -1,0 +1,38 @@
+Symbol Table
+Symbol     Value      Type
+------     -----      ----
+OUTPORT    0000         R
+EOL        0002         R
+C1         0001         R
+S          0001         A
+PSTRING    0003         D
+PLOOP      0004         R
+DONEPS     000C         R
+ 
+ 
+Counter   Code    Source Code
+-------   ----    -----------
+                  *                                                                               
+                  *  pstring -- a Mac3 program to print a string                                  
+                  *  argument:  pointer to the first character in the string                      
+                  *                                                                               
+  0000    FFFF    outport dc  -1                                                                  
+  0001    0001    c1    dc    1                                                                   
+  0002    0015    eol   dc    21                                                                  
+  0003            pstring                                                                         
+                        ext   pstring                                                             
+                  s     =     1                                                                   
+  0003    F401          ldal  s                                                                   
+  0004    FD80    ploop lddi                                                                      
+  0005    B006          jzer  doneps                                                              
+  0006    4FF9          ldar  outport                                                             
+  0007    FDC0          stdi                                                                      
+  0008    F401          ldal  s                                                                   
+  0009    6FF7          adar  c1                                                                  
+  000A    F501          stal  s                                                                   
+  000B    CFF8          jump  ploop                                                               
+  000C    0FF5    doneps lddr eol                                                                 
+  000D    4FF2          ldar  outport                                                             
+  000E    FDC0          stdi                                                                      
+  000F    FEC0          retn                                                                      
+  0010                  end                                                                       

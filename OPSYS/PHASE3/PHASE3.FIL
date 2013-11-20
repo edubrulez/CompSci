@@ -1,0 +1,28 @@
+#
+#   Use this make file to compile and run phase 3 of your operating
+#   systems project.  Invoke the make file by entering the command
+#   'make -f phase3.file.d' (You can do a compile only by entering
+#   'make -f phase3.file.d compile')
+#
+headers = memory.h.a process.h.a sema.h.a
+textfiles = 426test3 memory process sema scall utility snap \
+    pf cpcmd breakpt ph2start dummy
+run : phase3.text.a
+!   GENIPL PHASE3
+!   IPL 00C STOP
+compile : phase3.text.a
+PHASE3.TEXT.A : MEMORY.TEXT.A PROCESS.TEXT.A UTILITY.TEXT.A \
+                SEMA.TEXT.A SCALL.TEXT.A 426TEST3.TEXT.A
+!   EXEC LNKB PHASE3 $(textfiles)
+426TEST3.TEXT.A: 426TEST3.C.a SCALL.H.D
+!   CW 426TEST3 (ALIGN PRM PHASE 3
+SCALL.TEXT.A: SCALL.C.D SCALL.H.D
+!   CW SCALL (ALIGN PRM PHASE 3
+MEMORY.TEXT.A : MEMORY.C.A   $(headers)
+!   CW MEMORY (ALIGN PRM PHASE 3
+PROCESS.TEXT.A : PROCESS.C.A $(headers)
+!   CW PROCESS (ALIGN PRM PHASE 3
+SEMA.TEXT.A : SEMA.C.A $(headers)
+!   CW SEMA (ALIGN PRM PHASE 3
+UTILITY.TEXT.A : UTILITY.ASSEMBLE.A
+!   EXEC ASMC UTILITY

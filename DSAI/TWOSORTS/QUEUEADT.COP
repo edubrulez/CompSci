@@ -1,0 +1,29 @@
+{ERICK NAVE                                                                     
+ DSAI 11-19-93}                                                                 
+                                                                                
+{This Queue ADT uses a dynamic memory-based linked list of nodes.               
+   Each node (Qnode) contains the data of type QData (determined by             
+   the application) and a pointer to the next node (type Qptr).                 
+   The Queue type itself is simply a record of pointers to the first            
+   and last nodes for ease in enqueueing and dequeueing since they              
+   only interact with the first and last nodes of the list.}                    
+                                                                                
+type                                                                            
+ Qptr = @Qnode;                                                                 
+ Qnode = RECORD                                                                 
+           Data: QData;                                                         
+           Next: Qptr                                                           
+         END;                                                                   
+ Queue = RECORD                                                                 
+          First, Last: Qptr                                                     
+         END;                                                                   
+                                                                                
+{Queue externals - do not modify!}                                              
+                                                                                
+procedure QCreate(var Q:Queue);         external;                               
+procedure QDestroy(var Q:Queue);        external;                               
+function QEmpty(Q:Queue):boolean;       external;                               
+function QFull(Q:Queue):boolean;        external;                               
+procedure EnQueue(var Q:Queue; Item:QData);    external;                        
+procedure DeQueue(var Q:Queue; var Item:QData);    external;                    
+procedure QAppend(var Q1,Q2:Queue);     external;                               

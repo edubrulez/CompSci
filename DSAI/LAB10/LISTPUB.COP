@@ -1,0 +1,48 @@
+                                                                                
+{Public information for Random Access File Based Ordered List ADT}              
+                                                                                
+type                                                                            
+ RecordKind = (Header,Regular);                                                 
+ ListNode = record                                                              
+              next:integer;                                                     
+              case RecordKind of                                                
+              Header : ( ListSize,FileSize,Avail : integer );                   
+              Regular: ( Data : ListData;)                                      
+            end;                                                                
+ List = record                                                                  
+          Head:ListNode;                                                        
+          FileID:file of ListNode;                                              
+          FileName:string(20);                                                  
+          DDName:string(8)                                                      
+        end;                                                                    
+                                                                                
+                                                                                
+                                                                                
+procedure ListCreate(var L:List;FName:string(20);var Success:boolean);          
+                                                     external;                  
+                                                                                
+procedure ListDestroy(var L:List);                   external;                  
+                                                                                
+procedure ListAssign(var Source:List;var Dest:List;                             
+                     DestName:String(20));           external;                  
+                                                                                
+procedure ListAdd(var L:List;Item:ListData;                                     
+                  function Precedes(Item1,Item2:ListData):boolean;              
+                  var Success:boolean);              external;                  
+                                                                                
+procedure ListDelete(var L:List;Target:ListData;                                
+                  function Match(Target,AnyData:ListData):boolean;              
+                  var Success:boolean);              external;                  
+                                                                                
+procedure ListRetrieve(var L:List;Target:ListData;                              
+                  function Match(Target,AnyData:ListData):boolean;              
+                  var Item:ListData; var Success:boolean); external;            
+                                                                                
+procedure ListUpdate(var L:List;Target:ListData;                                
+                  function Match(Target,AnyData:ListData):boolean;              
+                  NewValue:ListData; var Success:boolean); external;            
+                                                                                
+procedure Traverse(var L:List;                                                  
+                   procedure ProcessNode(var Item:ListData));                   
+                                                      external;                 
+                                                                                

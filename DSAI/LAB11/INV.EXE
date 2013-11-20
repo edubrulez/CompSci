@@ -1,0 +1,11 @@
+/*commands to run inventory update3 */
+'maclib gen invupdt3 invupdt3 listpub filedynm'
+'pasc invupdt3 (lib(invupdt3) noprint'
+'pasc listfile (lib(invupdt3) noprint'
+'pasc listdel (lib(invupdt3) noprint'
+'pasc listupdt (lib(invupdt3) noprint'
+'pasc listtrav (lib(invupdt3) noprint'
+'pasc filedynm (lib(invupdt3) noprint'
+'txtlib gen invupdt3 listfile listdel listupdt listtrav filedynm'
+'global txtlib vspascal amplang invupdt3'
+'load invupdt3'

@@ -1,0 +1,56 @@
+{ERICK NAVE                                                                     
+ DS&A I 10-26-93                                                                
+ VSTRTYPE COPY IS THE INTERFACE BETWEEN ANY PROGRAM USING THE VARIABLE          
+   LENGTH STRING (VSTRING) SEGMENT.}                                            
+                                                                                
+{This would be a good place to provide a brief overview of                      
+ the data structure used to implement your variable length strings}             
+                                                                                
+{THE DATA STRUCTURE USED TO CREATE VARIABLE LENGTH STRINGS IS A                 
+   LINKED LIST OF PACKED ARRAYS WITH A MAX SIZE OF 20 PER ARRAY.                
+   VSTRING IS A RECORD CONTAINING THE LENGTH OF THE STRING (LENGTH)             
+   AND A POINTER TO THE FIRST NODE OF THE LIST.  EACH NODE IS OF TYPE           
+   CBLOCK WHICH IS A RECORD CONTAINING A STRING SEGMENT (STRSEGMENT),           
+   THE LENGTH OF THE SEGMENT (SEGLENGTH) AND A POINTER TO THE NEXT              
+   NODE (NEXT).}                                                                
+                                                                                
+{This file is the interface portion for the VSTRSEG module                      
+ In it are the required type definitions for programs that need to              
+ use variable length strings. The operation interface is also                   
+ contained in the form of externaled procedures and functions.                  
+ The only "public" type here is VString. Any other references to                
+ variable length strings in application programs must be through                
+ the public functions and procedures listed below.}                             
+                                                                                
+const                                                                           
+ MaxBSize = 20;                                                                 
+type                                                                            
+ BPtr = @CBlock;                                                                
+ STRINGSEGMENTTYPE= PACKED ARRAY[1..MAXBSIZE] OF CHAR;                          
+ CBlock = Record                                                                
+            STRSEGMENT: STRINGSEGMENTTYPE;                                      
+            SEGLENGTH: INTEGER;                                                 
+            NEXT: BPTR;                                                         
+          End;                                                                  
+ VSTRING = RECORD                                                               
+             LENGTH: INTEGER;                                                   
+             FIRST: BPTR;                                                       
+           End;                                                                 
+                                                                                
+{VString operations - Do not change anything below this line!}                  
+function VLength(var S:VString):Integer;                    external;           
+function VReadStr(var f:text):VString;                      external;           
+function CopyOf(var S:VString):VString;                     external;           
+function CHat(var S:VString; Pos:Integer):Char;             external;           
+function VStr(CH:Char):VString;                             external;           
+function VSubstr(var S:VString; Start,Len:Integer):VString; external;           
+function VSearch(var S,T:VString; Start:Integer):Integer;   external;           
+function VEqual(var S,T:VString):Boolean;                   external;           
+function VLessThan(var S,T:VString):Boolean;                external;           
+function VCreate:VString;                                   external;           
+procedure VDestroy(var S:VString);                          external;           
+procedure VWriteStr(var f:text; var S:VString);             external;           
+procedure VConcat(var S,T:VString);                         external;           
+procedure VInsert(var S,T:VString; Place:Integer);          external;           
+procedure VDelete(var S:VString; Start,Len:Integer);        external;           
+                                                                                

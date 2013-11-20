@@ -1,0 +1,49 @@
+Symbol Table
+Symbol     Value      Type
+------     -----      ----
+C1         000A         R
+CLOOP      000B         R
+L          0003         A
+QUIT       0017         R
+S3         000B         D
+SRC        0002         A
+DEST       0001         A
+C          0000         D
+ 
+ 
+Counter   Code    Source Code
+-------   ----    -----------
+  0000    0014    c    dc    20                                                                   
+  0001    0040         dc    64                                                                   
+  0002    FCE1         dc    -799                                                                 
+  0003    004F         dc    79                                                                   
+  0004    FFAE         dc    -82                                                                  
+  0005    FFFC         dc    -4                                                                   
+  0006    0021         dc    33                                                                   
+  0007    FC18         dc    -1000                                                                
+  0008    EC64         dc    -5020                                                                
+  0009    0D68         dc    3432                                                                 
+                       ext   c                                                                    
+  000A    0001    c1   dc    1                                                                    
+                  l    =     3                                                                    
+                  src  =     2                                                                    
+                  dest =     1                                                                    
+  000B            s3                                                                              
+                       ext   s3                                                                   
+  000B    F003    cloop lddl l                                                                    
+  000C    D00A          jneg quit                                                                 
+  000D    B009          jzer quit                                                                 
+  000E    3FFB          sbdr c1                                                                   
+  000F    F103          stdl l                                                                    
+  0010    F403          ldal l                                                                    
+  0011    F602          adal src                                                                  
+  0012    FD80          lddi                                                                      
+  0013    F403          ldal l                                                                    
+  0014    F601          adal dest                                                                 
+  0015    FDC0          stdi                                                                      
+  0016    CFF4          jump cloop                                                                
+  0017    FEC0    quit  retn                                                                      
+  0018            QUIT
+                  *** Multiply Defined Symbol
+  0018            QUIT
+                  *** Multiply Defined Symbol

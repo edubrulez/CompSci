@@ -1,0 +1,29 @@
+Dr. Margush
+Acme Publishing
+2095867 East One Hundred and Seventy-third Street
+Jerry
+This is a long substitution field (#5). An interesting thought occurs here... what if a substitution field contains a substitution field... will it be substituted... we will try it here: sub field number 1 here: <1>. Did it work?  If so, what might happen if we tried to substitute field 5 in field 5? I will not try it!
+P.S. Field 6 is for Postscripts
+P.P.S Field seven is for post-postscripts
+*
+B1
+B2
+B3
+B4
+B5
+B6
+B7
+B8
+B9
+B0
+B11
+B12
+Last Sub for letter B (13)
+*
+C - Sub 1
+C - Sub 2 <1>
+C - Sub 3 <2>
+C - Sub 4 <3>
+C - Sub 5 <4>
+C - Sub 6 <5>
+*

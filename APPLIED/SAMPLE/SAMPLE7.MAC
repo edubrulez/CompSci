@@ -1,0 +1,21 @@
+        DS      54                                                              
+MAIN    LDDR    A                                                               
+        ds      34                                                              
+        ADDR    B                                                               
+        ADDR    C    dr <-- a+b+c                                               
+        STDR    SUM                                                             
+SUM     DS      1                                                               
+A       DS      35                                                              
+        lddr    a                                                               
+B       DS      100                                                             
+C       DS      1                                                               
+        EXT     SUM                                                             
+D       DX      ALPHA                                                           
+        DC      C-SUM                                                           
+        DC      C+8                                                             
+        EXT     MAIN                                                            
+        DC      C-8                                                             
+F       DX      BETA                                                            
+        EXT     D                                                               
+G       DX      UOFAKRON                                                        
+        END     MAIN                                                            

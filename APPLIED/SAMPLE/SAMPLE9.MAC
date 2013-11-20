@@ -1,0 +1,62 @@
+        DS      54                                                              
+MAIN    LDDR    A                                                               
+        ds      3                                                               
+        ADDR    B                                                               
+        ADDR    C    dr <-- a+b+c                                               
+        STDR    SUM                                                             
+SUM     DS      1                                                               
+A       DS      1                                                               
+        LDDR    A                                                               
+        ADDR    B                                                               
+        ADDR    C    dr <-- a+b+c                                               
+        STDR    SUM                                                             
+        DS      1                                                               
+        DS      1                                                               
+        LDDR    A                                                               
+        ADDR    B                                                               
+        ADDR    C    dr <-- a+b+c                                               
+        STDR    SUM                                                             
+        DS      1                                                               
+        DS      1                                                               
+        LDDR    A                                                               
+        ADDR    B                                                               
+        ADDR    C    dr <-- a+b+c                                               
+        STDR    SUM                                                             
+        DS      1                                                               
+        DS      1                                                               
+        LDDR    A                                                               
+        ADDR    B                                                               
+        ADDR    C    dr <-- a+b+c                                               
+        STDR    SUM                                                             
+        DS      1                                                               
+        DS      1                                                               
+        LDDR    A                                                               
+        ADDR    B                                                               
+        ADDR    C    dr <-- a+b+c                                               
+        STDR    SUM                                                             
+        DS      1                                                               
+        DS      1                                                               
+        LDDR    A                                                               
+        ADDR    B                                                               
+        ADDR    C    dr <-- a+b+c                                               
+        STDR    SUM                                                             
+        DS      1                                                               
+        DS      1                                                               
+        LDDR    A                                                               
+        ADDR    B                                                               
+        ADDR    C    dr <-- a+b+c                                               
+        STDR    SUM                                                             
+        DS      1                                                               
+        DS      1                                                               
+B       DS      100                                                             
+C       DS      1                                                               
+        EXT     SUM                                                             
+D       DX      ALPHA                                                           
+        DC      C-SUM                                                           
+        DC      C+8                                                             
+        EXT     MAIN                                                            
+        DC      C-8                                                             
+F       DX      BETA                                                            
+        EXT     D                                                               
+G       DX      UOFAKRON                                                        
+        END                                                                     

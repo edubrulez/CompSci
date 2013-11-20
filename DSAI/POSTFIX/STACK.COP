@@ -1,0 +1,29 @@
+{Stack include file}                                                            
+{Erick Nave                                                                     
+ DSAI 11-30-93}                                                                 
+                                                                                
+%Include SDataDef                                                               
+                                                                                
+{This stack ADT dynamic memory based.  All the stack is is a pointer            
+  to the front of an unordered list of stacknodes which are records             
+  containing stackdata and a pointer to the next node.  All inserts             
+  (Pushes) and retreivals (Pops) are done from the head of the list             
+  (the variable of type stack)}                                                 
+                                                                                
+TYPE                                                                            
+  SPTR = @STACKNODE;                                                            
+  StackNode = Record                                                            
+                Data: StackData;                                                
+                Next: Sptr                                                      
+              end;                                                              
+  Stack = Sptr;                                                                 
+                                                                                
+{stack operations: external procedures and functions}                           
+procedure CreateStack(var S:Stack);  external;                                  
+procedure DestroyStack(var S:Stack); external;                                  
+function EmptyStack(S:Stack): Boolean; external;                                
+function FullStack(S:Stack): Boolean; external;                                 
+procedure Push(Var S:Stack; Item: StackData); external;                         
+procedure Pop(var S:Stack; var Item: StackData); external;                      
+PROCEDURE ONTOP(S:STACK; VAR ITEM: STACKDATA); EXTERNAL;                        
+{you complete the list}                                                         

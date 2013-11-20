@@ -1,0 +1,62 @@
+Symbol Table
+Symbol     Value      Type
+------     -----      ----
+OUTPORT    0000         R
+I          000D         R
+C1         000F         R
+C9         000E         R
+S          0001         A
+LOOP       0014         R
+CODE       0012         R
+C240       0011         R
+C10        0010         R
+DIGIT      0001         R
+PSTRING    0023         D
+DONE       001E         R
+PLOOP      0024         R
+DONEPS     002C         R
+ 
+ 
+Counter   Code    Source Code
+-------   ----    -----------
+  0000    FFFF    outport dc  -1                                                                  
+  0001            digit ds    10                                                                  
+  000B    0015          dc    21                                                                  
+  000C    0000          dc    0                                                                   
+  000D    0000    i     dc    0                                                                   
+  000E    0009    c9    dc    9                                                                   
+  000F    0001    c1    dc    1                                                                   
+  0010    000A    c10   dc    10                                                                  
+  0011    00F0    c240  dc    240                                                                 
+  0012    8FEE    code  lra   digit                                                               
+  0013    0FF9          lddr  i                                                                   
+  0014    3FFB    loop  sbdr  c10                                                                 
+  0015    A008          jpos  done                                                                
+  0016    0FF6          lddr  i                                                                   
+  0017    2FF9          addr  c240                                                                
+  0018    FDC0          stdi                                                                      
+  0019    6FF5          adar  c1                                                                  
+  001A    0FF2          lddr  i                                                                   
+  001B    2FF3          addr  c1                                                                  
+  001C    1FF0          stdr  i                                                                   
+  001D    CFF6          jump  loop                                                                
+  001E    8FE2    done  lra   digit                                                               
+  001F    FC80          psha                                                                      
+  0020    9002          call pstring                                                              
+  0021    F801          insp  1                                                                   
+  0022    FEC0          retn                                                                      
+                  *                                                                               
+  0023            pstring                                                                         
+                        ext   pstring                                                             
+                  s     =     1                                                                   
+  0023    F401          ldal  s                                                                   
+  0024    FD80    ploop lddi                                                                      
+  0025    B006          jzer  doneps                                                              
+  0026    4FD9          ldar  outport                                                             
+  0027    FDC0          stdi                                                                      
+  0028    F401          ldal  s                                                                   
+  0029    6FE5          adar  c1                                                                  
+  002A    F501          stal  s                                                                   
+  002B    CFF8          jump  ploop                                                               
+  002C    FEC0    doneps retn                                                                     
+  002D                  end   code                                                                

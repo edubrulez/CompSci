@@ -1,0 +1,31 @@
+#make file for inventory update version 3 - lab exercise 11
+ 
+run: invupdt3.text invupdt3.txtlib
+ 
+!global txtlib vspascal amplang invupdt3
+!load invupdt3
+ 
+listfile.text: listfile.pascal invupdt3.maclib
+!pasc listfile (lib(invupdt3) noprint
+ 
+listdel.text: listdel.pascal invupdt3.maclib
+!pasc listdel (lib(invupdt3) noprint
+ 
+invupdt3.txtlib: listfile.text listdel.text listupdt.text \
+                 listtrav.text filedynm.text
+!txtlib gen invupdt3 listfile listdel listupdt listtrav filedynm
+ 
+listupdt.text: listupdt.pascal invupdt3.maclib
+!pasc listupdt (lib(invupdt3) noprint
+ 
+Invupdt3.maclib: invupdt3.copy listpub.copy filedynm.copy
+!maclib gen invupdt3 invupdt3 listpub filedynm
+ 
+listtrav.text: listtrav.pascal invupdt3.maclib
+!pasc listtrav (lib(invupdt3) noprint
+ 
+invupdt3.text: invupdt3.pascal invupdt3.maclib
+!pasc invupdt3 (lib(invupdt3) noprint
+ 
+filedynm.text: filedynm.pascal invupdt3.maclib
+!pasc filedynm (lib(invupdt3) noprint

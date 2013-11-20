@@ -1,0 +1,80 @@
+Symbol Table
+Symbol     Value      Type
+------     -----      ----
+G          00D3         R
+UOFAKRON   0000         E
+ALPHA      0000         E
+BETA       0000         E
+MAIN       0036         D
+SUM        003D         D
+A          003E         R
+B          0069         R
+C          00CD         R
+D          00CE         D
+F          00D2         R
+ 
+ 
+Counter   Code    Source Code
+-------   ----    -----------
+  0000                    DS      54                                                              
+  0036    0007    MAIN    LDDR    A                                                               
+  0037                    ds      3                                                               
+  003A    202E            ADDR    B                                                               
+  003B    2091            ADDR    C    dr <-- a+b+c                                               
+  003C    1000            STDR    SUM                                                             
+  003D            SUM     DS      1                                                               
+  003E            A       DS      1                                                               
+  003F    0FFE            LDDR    A                                                               
+  0040    2028            ADDR    B                                                               
+  0041    208B            ADDR    C    dr <-- a+b+c                                               
+  0042    1FFA            STDR    SUM                                                             
+  0043                    DS      1                                                               
+  0044                    DS      1                                                               
+  0045    0FF8            LDDR    A                                                               
+  0046    2022            ADDR    B                                                               
+  0047    2085            ADDR    C    dr <-- a+b+c                                               
+  0048    1FF4            STDR    SUM                                                             
+  0049                    DS      1                                                               
+  004A                    DS      1                                                               
+  004B    0FF2            LDDR    A                                                               
+  004C    201C            ADDR    B                                                               
+  004D    207F            ADDR    C    dr <-- a+b+c                                               
+  004E    1FEE            STDR    SUM                                                             
+  004F                    DS      1                                                               
+  0050                    DS      1                                                               
+  0051    0FEC            LDDR    A                                                               
+  0052    2016            ADDR    B                                                               
+  0053    2079            ADDR    C    dr <-- a+b+c                                               
+  0054    1FE8            STDR    SUM                                                             
+  0055                    DS      1                                                               
+  0056                    DS      1                                                               
+  0057    0FE6            LDDR    A                                                               
+  0058    2010            ADDR    B                                                               
+  0059    2073            ADDR    C    dr <-- a+b+c                                               
+  005A    1FE2            STDR    SUM                                                             
+  005B                    DS      1                                                               
+  005C                    DS      1                                                               
+  005D    0FE0            LDDR    A                                                               
+  005E    200A            ADDR    B                                                               
+  005F    206D            ADDR    C    dr <-- a+b+c                                               
+  0060    1FDC            STDR    SUM                                                             
+  0061                    DS      1                                                               
+  0062                    DS      1                                                               
+  0063    0FDA            LDDR    A                                                               
+  0064    2004            ADDR    B                                                               
+  0065    2067            ADDR    C    dr <-- a+b+c                                               
+  0066    1FD6            STDR    SUM                                                             
+  0067                    DS      1                                                               
+  0068                    DS      1                                                               
+  0069            B       DS      100                                                             
+  00CD            C       DS      1                                                               
+                          EXT     SUM                                                             
+  00CE    0000    D       DX      ALPHA                                                           
+  00CF    0090            DC      C-SUM                                                           
+  00D0    00D5            DC      C+8                                                             
+                          EXT     MAIN                                                            
+  00D1    00C5            DC      C-8                                                             
+  00D2    0000    F       DX      BETA                                                            
+                          EXT     D                                                               
+  00D3    0000    G       DX      UOFAKRON                                                        
+  00D4                    END                                                                     

@@ -1,0 +1,13 @@
+headers = common.h table.h
+macasm.module: macasm.text common.text pass1.text table.text
+! global txtlib clib pass2
+! load macasm pass1 common table (map noauto
+! genmod macasm (map
+macasm.text:  macasm.c $(headers)
+! cw macasm
+pass1.text:  pass1.c $(headers)
+! cw pass1
+table.text: table.c $(headers)
+! cw table
+common.text: common.c $(headers)
+! cw common

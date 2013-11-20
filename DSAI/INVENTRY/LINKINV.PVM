@@ -1,0 +1,376 @@
+PROGRAM LinkInventoryUpdate {input, output, InvFile, TransactionFile,
+     TranscriptFile, ExceptionFile};
+ 
+{Erick Nave
+ DS&A1 9-30-93
+ LinkInventoryUpdate (linkinv.pascal) accesses a binary inventory file
+    and places its records into a linked list.  Next it accesses a text
+    transaction file specified by the user and reads the first character
+    which the transaction to be attempted, and the part number involved
+    in the transaction. If the transaction character is valid then it
+    calls a sequential search to see if the part number is in the list.
+    All errors (Illegal transactions; part number not found on a delete,
+    price or quantity change; and duplicate part number on an add) are
+    reported in an exception file with the same base name as the
+    transaction file.  All valid transactions are reported in a tran-
+    script file with the same base name as the transaction file.  The
+    new inventory (the updated list) is then written back to the
+    inventory file.}
+ 
+% INCLUDE CMS;
+ 
+CONST
+     DescriptionLength = 15;
+     PartNumberLength = 7;
+ 
+TYPE
+    DescriptionType = Packed Array[1..DescriptionLength] of Char;
+    PartNumberType = Packed Array[1..PartNumberLength] of Char;
+    PartType = RECORD
+                PartNumber:PartNumberType;
+                Quantity:Integer;
+                Price:Real;
+                Description:DescriptionType
+               END;
+    InventoryType = @InventoryData;
+    InventoryData = RECORD
+                     Inventory: PartType;
+                     Next: InventoryType
+                    END;
+    InvFileType = FILE OF PartType;
+ 
+VAR
+   InvFile: InvFileType;   {binary file of inventory information}
+   TransactionFile, TranscriptFile, ExceptionFile: TEXT;
+      {TransactionFile is the source file for the transactions.
+          TranscriptFile and ExceptionFile contain text information on
+          legal and illegal transactions, respectively.}
+ 
+PROCEDURE GetRecords(var InvSt:InventoryType);
+  {GetRecords retreives the inventory records from inventry.dat and
+      places them into the list and returns the address of the first
+      record (InvSt).}
+  VAR
+    EndInv:InventoryType; {keeps track of last item on list so next can
+                             be added}
+  BEGIN
+    RESET (InvFile, 'name=inventry.dat.*');
+    IF not eof(InvFile) then
+      BEGIN
+        NEW(InvSt);
+        READ(InvFile, InvSt@.Inventory);
+        EndInv:= InvSt;
+        WHILE not eof(InvFile) do
+          BEGIN
+            NEW(EndInv@.Next);
+            READ(InvFile, EndInv@.Next@.Inventory);
+            EndInv:= EndInv@.Next
+          END;
+        EndInv@.Next:= NIL
+      END
+    ELSE
+      InvSt:= NIL
+  END; {GetRecords}
+ 
+PROCEDURE ReadPartNumber(var PartNum:PartNumberType);
+  {ReadPartNumber reads the next 7 characters of text from
+     TransactionFile. This is the part number (PartNum).}
+  VAR x: integer; {loop index}
+  BEGIN
+    FOR x:= 1 to PartNumberLength do
+        READ(TransactionFile, PartNum[x])
+  END; {ReadPartNumber}
+ 
+PROCEDURE SequentialSearch (var InvSt:InventoryType; Part:PartNumberType
+              ; var found:boolean; var where:InventoryType);
+  {SequentialSearch searches the list for the part number (Part) and
+      gives Found a boolean value to aid in the decision making in
+      ReadTransactionType.  It also returns the position of the part
+      before the one (where) to be used when processing the
+      transactions.}
+  VAR
+    temp: InventoryType; {temporary address storage}
+    Looking: BOOLEAN;  {used in loop decision}
+  BEGIN
+    found:= false;
+    looking:= true;
+    temp:= InvSt;
+    where:= NIL;
+    WHILE (temp <> NIL) and looking do
+      BEGIN
+        IF (temp@.Inventory.PartNumber) >=  part then
+          BEGIN
+            looking:= false;
+            IF temp@.Inventory.PartNumber = part  then
+                found:= true;
+          END
+        ELSE
+          BEGIN
+            where:= temp;
+            temp:= temp@.next
+          END
+      END
+  END; {SequentialSearch}
+ 
+PROCEDURE GetDescription(var d:DescriptionType);
+  {GetDescription is called either by add to retrieve the description or
+      when an illegal transaction occurs and the rest of the transaction
+      needs to be read in order to write the transaction to the
+      ExceptionFile. d is short for description and the the packed array
+      that carries the info.}
+  VAR loc: integer; {used for array subscript}
+  BEGIN
+    loc:= 0;
+    WHILE not eoln(TransactionFile) and (loc<DescriptionLength) do
+      BEGIN
+        loc:= loc + 1;
+        READ(TransactionFile, d[loc])
+      END;
+    WHILE loc < DescriptionLength do
+      BEGIN
+        loc:= loc + 1;
+        d[loc]:= ' '
+      END;
+    READLN (TransactionFile)
+  END; {GetDescription}
+ 
+PROCEDURE DeleteItem(var deletenum:Integer; where:InventoryType;
+                       var InvSt:InventoryType; part: PartNumberType);
+  {DeleteItem takes the address of the part before the one to be
+      deleted (where) and assigns next the address of the part after
+      the one to be deleted.  Meanwhile, temp holds the address of the
+      part to be deleted and is disposed after the address switch.
+      Deletenum increments one each time the procedure is called.
+      The part number (part) is used in writing the transcript.}
+  VAR
+    temp: InventoryType;
+  BEGIN
+    deletenum:= deletenum + 1;
+    IF where = NIL then
+      BEGIN
+        temp:= InvSt;
+        InvSt:= temp@.next
+      END
+    ELSE
+      BEGIN
+        temp:= where@.next;
+        where@.next:= temp@.Next
+      END;
+    DISPOSE(temp);
+    WRITELN(TranscriptFile,'Part number ',part,' deleted.');
+    READLN(TransactionFile)
+  END; {DeleteItem}
+ 
+PROCEDURE QuantityChange (var quant, quantnum:integer;
+                              Part: PartNumberType);
+  {QuantityChange reads an integer into quant, which adjusts the
+      quantity of the part in the call in ReadTransactionType.  Quantnum
+      is the running total of how many times QuantityChange has been
+      called. Part is the part number used in writing the transcript.}
+  VAR quantch: Integer; {the amt quantity changes}
+  BEGIN
+    quantnum:= quantnum + 1;
+    READLN(TransactionFile, quantch);
+    quant:= quant + quantch;
+    WRITELN(TranscriptFile, 'Quantity of ',Part,' changed to ',quant:1)
+  END; {QuantityChange}
+ 
+PROCEDURE PriceChange (var price:real; var pricenum: integer;
+                           Part:PartNumberType);
+  {PriceChange reads a real value into price, the value of Where@.Next@
+      .Inventory.price in ReadTransactionType.  Pricenum keeps track of
+      how many times PriceChange has been called.  Part is the part
+      number used in the transcript.}
+  BEGIN
+    pricenum:= pricenum + 1;
+    READLN(TransactionFile, price);
+    WRITELN(TranscriptFile, 'Price of ',Part,' changed to ',price:0:2 )
+  END; {PriceChange}
+ 
+PROCEDURE GetInventory(var Inv:PartType; partnum: PartNumberType);
+  {GetInventory supplies inventory information to a node on an add
+      transaction.}
+  BEGIN
+    Inv.PartNumber:= PartNum;
+    Inv.Quantity:= 0;
+    Inv.Price:= 0.0;
+    GetDescription(Inv.Description);
+    WRITELN(TranscriptFile, 'Part number ',partnum,' added with the ',
+                'description ',Inv.Description)
+  END; {GetInventory}
+ 
+PROCEDURE AddItem (var InvSt: InventoryType; where: InventoryType;
+                     PartNum: PartNumberType; var addnum: INTEGER);
+  {AddItem takes the position of the node before the one to be added
+     (where) and makes where@.next temp so a new node's address can
+     be added there, then the new node's inventory is initialized by
+     calling GetInventory.  Finally, the new node's next value becomes
+     temp in order to rejoin the list.  Addnum accumulates the number
+     of times this procedure is called.  PartNum is used in the
+     transcript.}
+  VAR
+    temp: InventoryType; {temporary address storage}
+  BEGIN
+    addnum:= addnum + 1;
+    IF where <> NIL then
+      BEGIN
+        Temp:= where@.Next;
+        NEW (where@.Next);
+        GetInventory (where@.Next@.Inventory, partnum);
+        where@.Next@.Next:= temp
+      END
+    ELSE
+      BEGIN
+        temp:= InvSt;
+        NEW(InvSt);
+        GetInventory (InvSt@.Inventory, partnum);
+        InvSt@.Next:= temp
+      END
+  END; {AddItem}
+ 
+PROCEDURE ReadTransactionType(var InvSt:InventoryType; var deletenum,
+          quantnum, pricenum, addnum, transnum:Integer);
+  {ReadTransactionType reads the first character of the transaction,
+      which is the transaction type.  It then takes the next 7 char-
+      acters which is the part number (PartNum).  Then, through a
+      sequence of decision statements and possibly a search to
+      aid in the decisions, it either sends the proper paramaters to the
+      proper porcedure to change the inventory list (InvSt is the
+      address of the first node) or write an error message to the
+      exception file.  Transnum is incremented by one each time the
+      procedure is called to get a total number of transactions.
+      Deletenum, quantnum, pricenum and addnum are accumulated in their
+      respective procedures to be sent back to the main body to be
+      displayed.}
+  VAR
+    TranType:char; {the transaction selected}
+    PartNum:PartNumberType; {the Part number}
+    found:boolean; {used in decisions}
+    where:InventoryType; {if found then it is location of node to be
+                           changed}
+    desc:DescriptionType; {used in procedure call GetDescription to
+                                capture the rest of the transaction in
+                                order to write the transaction to the
+                                to the exception file when there is an
+                                error}
+  BEGIN
+    transnum:= transnum + 1;
+    READ(TransactionFile,TranType);
+    ReadPartNumber(PartNum);
+    IF TranType in ['A', 'D', 'Q', 'P'] then
+      BEGIN
+        SequentialSearch(InvSt, PartNum, found, Where);
+        IF found then
+          CASE TranType of
+            'A': BEGIN
+                   GetDescription(Desc);
+                   WRITELN(ExceptionFile,TranType,PartNum,Desc);
+                   WRITELN(ExceptionFile,'Duplicate part number on an ',
+                                                'Add transaction.');
+                   WRITELN(ExceptionFile)
+                 END;
+            'D': DeleteItem(deletenum, where, InvSt, PartNum);
+            'Q': IF where = NIL then
+                   QuantityChange(InvSt@.Inventory.Quantity, quantnum,
+                       PartNum)
+                 ELSE
+                   QuantityChange(Where@.Next@.Inventory.Quantity,
+                                 quantnum, PartNum);
+            'P': IF where = NIL then
+                   PriceChange(InvSt@.Inventory.Price, pricenum,
+                                PartNum)
+                 ELSE
+                   PriceChange(Where@.Next@.Inventory.Price,
+                                  pricenum, PartNum)
+          END
+        ELSE
+          IF TranType <> 'A' then
+            BEGIN
+              GetDescription(Desc);
+              WRITELN(ExceptionFile,TranType,PartNum,Desc);
+              WRITELN(ExceptionFile,'Non-existing part number on a ',
+                                          TranType,' transaction.');
+              WRITELN(ExceptionFile)
+            END
+          ELSE AddItem(InvSt, where, PartNum, addnum)
+      END
+    ELSE
+      BEGIN
+        GetDescription(Desc);
+        WRITELN(ExceptionFile,TranType,PartNum,Desc);
+        WRITELN(ExceptionFile,'Illegal transaction code.');
+        WRITELN(ExceptionFile)
+      END
+  END; {ReadTransactionType}
+ 
+PROCEDURE WriteUpdatedInventory(InvSt:InventoryType);
+  {WriteUpdatedInventory writes the list with all changes to InvFile.}
+  VAR
+    temp, disposal: InventoryType; {temp is temporary address storage}
+                                   {disposal is address to be disposed}
+  BEGIN
+    REWRITE (InvFile, 'name=inventry.dat.*');
+    temp:= InvSt;
+    WHILE temp <> NIL do
+      BEGIN
+        WRITE (InvFile, temp@.Inventory);
+        disposal:= temp;
+        temp:= temp@.next;
+        dispose(disposal)
+      END
+  END; {WriteUpdatedInventory}
+ 
+VAR
+   InventoryStart: InventoryType; {start of list in which data is read
+                                     into and changed}
+   Deletions, QuantitiesChanged, PricesChanged: INTEGER;
+   Additions, Transactions, IOErr, clear: INTEGER;
+     {Size is the size of the array.  Deletions is the number of items
+        deleted.  QuantitiesChanged is the number of items whose
+        quantities have been changed.  PricesChanged is the number of
+        items whose prices have been changed.  Additions is the number
+        of items added.  Transactions is the number of total legal and
+        illegal transactions.  Clear and IOErr are the return codes
+        for CMS commands.}
+   FileName: STRING(8); {base name of the files}
+ 
+BEGIN {main}
+     {main assigns all of the accumulators to 0, prompts for the base
+        name of the transaction file, opens the proper files, and
+        calls GetRecords to initialize the list. Then while there are
+        transactions in the transaction file, it calls ReadTransaction-
+        Type.  Finally it writes the number of the transactions to the
+        screen and calls WriteUpdatedInventory to place the list back
+        into the inventory file.}
+     termin (input);
+     termout(output);
+     Deletions:= 0;
+     QuantitiesChanged:= 0;
+     PricesChanged:= 0;
+     Additions:= 0;
+     Transactions:= 0;
+     CMS('vmfclear',clear);
+     WRITELN('Enter the base of the transaction file name: ');
+     READLN(FileName);
+     CMS('estate '||FileName||' TRN *',IOErr);
+     IF IOErr <> 0 then
+        WRITELN('Unable to locate transaction file')
+     ELSE
+       BEGIN
+         RESET(TransactionFile, 'name=' || FileName || '.TRN.*');
+         REWRITE(TranscriptFile, 'name=' || FileName || '.TRS.A');
+         REWRITE(ExceptionFile, 'name=' || FileName || '.XCP.A')
+       END;
+     WRITELN;
+     GetRecords(InventoryStart);
+     WHILE not eof(TransactionFile) do
+       ReadTransactionType(InventoryStart, Deletions, QuantitiesChanged
+          ,PricesChanged, Additions, Transactions);
+     WriteUpdatedInventory(InventoryStart);
+     WRITELN ('There were:');
+     WRITELN (Additions:5,' Additions');
+     WRITELN (Deletions:5,' Deletions');
+     WRITELN (QuantitiesChanged:5,' Quantities Changed');
+     WRITELN (PricesChanged:5, ' Prices Changed');
+     WRITELN ('and a TOTAL of ',Transactions:1,' transactions');
+END. {InventoryUpdate}

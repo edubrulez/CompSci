@@ -1,0 +1,9 @@
+headers = table.h
+macload.module: macload.text table.text
+! global txtlib clib mac3
+! load macload table (map noauto
+! genmod macload (map
+macload.text: macload.c $(headers)
+! cw macload ( nozero
+table.text: table.c $(headers)
+! cw table

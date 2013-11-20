@@ -1,0 +1,216 @@
+Symbol Table
+Symbol     Value      Type
+------     -----      ----
+G          07E6         D
+TEMP       0000         A
+I          0003         A
+OUTPORT    082B         R
+P10        07EA         R
+C1         07F1         R
+C5         07E9         R
+C100       0840         R
+S          0006         A
+WRITE      081A         R
+BPSTR      0842         R
+ENDWHILE   0816         R
+X          0005         A
+EXIT2      085C         R
+S0         0001         A
+I2         0000         A
+S7         0836         R
+BCONV      0841         R
+EXIT       0826         R
+FOR        0805         R
+LOOP       0846         R
+CONV10X    0000         E
+PSTRINGX   0000         E
+DATA       0009         D
+ENDFOR     0822         R
+C240       07EF         R
+CONV10     07F2         D
+PSTRING    082C         D
+PI         0843         D
+MAIN       0000         D
+ON         0002         A
+PLOOP      082D         R
+WHILE      0809         R
+DATA2      07D9         D
+ABC        1065         R
+HELLO      0000         E
+NZE        07FC         R
+POS        0802         R
+B2345      0000         E
+SUM        0005         R
+DONEPS     0835         R
+C96        07F0         R
+A          0006         R
+B          0007         R
+C          0008         R
+D          0001         A
+F          07E5         R
+ 
+ 
+Counter   Code    Source Code
+-------   ----    -----------
+  0000    0005    MAIN    LDDR    A                                                               
+  0001    2005            ADDR    B                                                               
+  0002    2005            ADDR    C    dr <-- a+b+c                                               
+  0003    1001            STDR    SUM                                                             
+  0004    FEC0            RETN                                                                    
+  0005            SUM     DS      1                                                               
+  0006    0020    A       DC      32                                                              
+  0007    0030    B       DC      48                                                              
+  0008    0040    C       DC      64                                                              
+  0009            DATA    DS      2000                                                            
+  07D9            DATA2   DS      10                                                              
+  07E3    0009            DC      DATA                                                            
+  07E4    07D9            DC      DATA2                                                           
+                          EXT     DATA                                                            
+                          EXT     DATA2                                                           
+  07E5    0000    F       DX      HELLO                                                           
+  07E6    0000    G       DX      B2345                                                           
+  07E7    0781            DC      F-100                                                           
+  07E8    0804            DC      G+30                                                            
+                          EXT     G                                                               
+                          EXT     MAIN                                                            
+  07E9    0005    C5     DC     5                                                                 
+  07EA    2710    P10    DC     10000                                                             
+  07EB    03E8           DC     1000                                                              
+  07EC    0064           DC     100                                                               
+  07ED    000A           DC     10                                                                
+  07EE    0001           DC     1                                                                 
+  07EF    00F0    C240   DC     240                                                               
+  07F0    0060    C96    DC     96                                                                
+  07F1    0001    C1     DC     1                                                                 
+                  S      =      6                                                                 
+                  X      =      5                                                                 
+                  I      =      3                                                                 
+                  ON     =      2                                                                 
+                  D      =      1                                                                 
+                  TEMP   =      0                                                                 
+                  *                                                                               
+  07F2    F904    CONV10 DESP   4                                                                 
+                         EXT    CONV10                                                            
+  07F3    F005           LDDL   X                                                                 
+  07F4    E007           JNZE   NZE                                                               
+  07F5    F406           LDAL   S                                                                 
+  07F6    0FF8           LDDR   C240                                                              
+  07F7    FDC0           STDI                                                                     
+  07F8    6FF8           ADAR   C1                                                                
+  07F9    FB00           LCO    0                                                                 
+  07FA    FDC0           STDI                                                                     
+  07FB    C02A           JUMP   EXIT                                                              
+                  *                                                                               
+  07FC    A005    NZE    JPOS   POS                                                               
+  07FD    F406           LDAL   S                                                                 
+  07FE    0FF1           LDDR   C96                                                               
+  07FF    FDC0           STDI                                                                     
+  0800    6FF0           ADAR   C1                                                                
+  0801    F506           STAL   S                                                                 
+                  *                                                                               
+  0802    FB00    POS    LCO    0                                                                 
+  0803    F102           STDL   ON                                                                
+                  *                                                                               
+  0804    F103           STDL   I                                                                 
+  0805    3FE3    FOR    SBDR   C5                                                                
+  0806    A01F           JPOS   EXIT                                                              
+  0807    FB00           LCO    0                                                                 
+  0808    F101           STDL   D                                                                 
+                  *                                                                               
+  0809    8FE0    WHILE  LRA    P10                                                               
+  080A    F603           ADAL   I                                                                 
+  080B    FD80           LDDI                                                                     
+  080C    F100           STDL   TEMP                                                              
+  080D    F305           SBDL   X                                                                 
+  080E    A007           JPOS   ENDWHILE                                                          
+  080F    FB01           LCO    1                                                                 
+  0810    F201           ADDL   D                                                                 
+  0811    F101           STDL   D                                                                 
+  0812    F005           LDDL   X                                                                 
+  0813    F300           SBDL   TEMP                                                              
+  0814    F105           STDL   X                                                                 
+  0815    CFF3           JUMP   WHILE                                                             
+                  *                                                                               
+  0816    F002    ENDWHILE LDDL   ON                                                              
+  0817    A002           JPOS   WRITE                                                             
+  0818    F001           LDDL   D                                                                 
+  0819    B008           JZER   ENDFOR                                                            
+                  *                                                                               
+  081A    F001    WRITE  LDDL   D                                                                 
+  081B    2FD3           ADDR   C240                                                              
+  081C    F406           LDAL   S                                                                 
+  081D    FDC0           STDI                                                                     
+  081E    6FD2           ADAR   C1                                                                
+  081F    F506           STAL   S                                                                 
+  0820    FB01           LCO    1                                                                 
+  0821    F102           STDL   ON                                                                
+                  *                                                                               
+  0822    FB01    ENDFOR LCO    1                                                                 
+  0823    F203           ADDL   I                                                                 
+  0824    F103           STDL   I                                                                 
+  0825    CFDF           JUMP   FOR                                                               
+                  *                                                                               
+  0826    F406    EXIT   LDAL   S                                                                 
+  0827    FB00           LCO    0                                                                 
+  0828    FDC0           STDI                                                                     
+  0829    F804           INSP   4                                                                 
+  082A    FEC0           RETN                                                                     
+                  *                                                                               
+                  S0    =     1                                                                   
+  082B    FFFF    OUTPORT DC  -1                                                                  
+  082C    F401    PSTRING LDAL S0                                                                 
+                        EXT   PSTRING                                                             
+  082D    FD80    PLOOP LDDI                                                                      
+  082E    B006          JZER  DONEPS                                                              
+  082F    4FFB          LDAR  OUTPORT                                                             
+  0830    FDC0          STDI                                                                      
+  0831    F401          LDAL  S0                                                                  
+  0832    6FBE          ADAR  C1                                                                  
+  0833    F501          STAL  S0                                                                  
+  0834    CFF8          JUMP  PLOOP                                                               
+  0835    FEC0    DONEPS RETN                                                                     
+  0836            S7    DS     10                                                                 
+                  I2    =      0                                                                  
+  0840    0064    C100  DC     100                                                                
+  0841    0000    BCONV DX     CONV10X                                                            
+  0842    0000    BPSTR DX     PSTRINGX                                                           
+  0843    F901    PI    DESP   1                                                                  
+                        EXT    PI                                                                 
+  0844    FB00          LCO    0                                                                  
+  0845    F100          STDL   I2                                                                 
+  0846    F000    LOOP  LDDL   I2                                                                 
+  0847    3FF8          SBDR   C100                                                               
+  0848    AFDD          JPOS   EXIT                                                               
+  0849    8FEC          LRA    S7                                                                 
+  084A    FC00          PSHD                                                                      
+  084B    F000          LDDL   I2                                                                 
+  084C    FC00          PSHD                                                                      
+  084D    4FF3          LDAR   BCONV                                                              
+  084E    FE80          CLLI                                                                      
+  084F    F802          INSP   2                                                                  
+  0850    8FE5          LRA    S7                                                                 
+  0851    FC00          PSHD                                                                      
+  0852    4FEF          LDAR   BPSTR                                                              
+  0853    FE80          CLLI                                                                      
+  0854    F801          INSP   1                                                                  
+  0855    FB01          LCO    1                                                                  
+  0856    F200          ADDL   I2                                                                 
+  0857    F100          STDL   I2                                                                 
+  0858    CFED          JUMP   LOOP                                                               
+  0859    6FE6          ADAR   C100                                                               
+  085A    3FE6          SBDR   BCONV                                                              
+  085B    0FE7          LDDR   PI                                                                 
+                  *                                                                               
+  085C    F801    EXIT2 INSP   1                                                                  
+  085D    FEC0          RETN                                                                      
+  085E    0826          DC     EXIT                                                               
+  085F    0846          DC     LOOP                                                               
+  0860    0016          DC     EXIT2-LOOP                                                         
+  0861    0841          DC     BCONV                                                              
+  0862    07F2          DC     CONV10                                                             
+  0863    004F          DC     BCONV-CONV10                                                       
+  0864    FFB1          DC     CONV10-BCONV                                                       
+  0865    07FF          LDDR   ABC                                                                
+  0866                  DS     2047                                                               
+  1065    0014    ABC   DC     20                                                                 
+  1066                  END    PI                                                                 

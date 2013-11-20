@@ -1,0 +1,12 @@
+{Erick Nave                                                                     
+ DSAI 11-19-93}                                                                 
+{Sorts include file - defines QData then includes QueueADT}                     
+                                                                                
+const                                                                           
+  DATALENGTH = 50; {LENGTH OF DATA}                                             
+                                                                                
+type                                                                            
+ QDATA = PACKED ARRAY [1..DATALENGTH] OF CHAR;                                  
+     {THIS IS THE DATA IN THE QUEUE AND THE INPUT/OUTPUT FILES.}                
+                                                                                
+%include QueueADT                                                               

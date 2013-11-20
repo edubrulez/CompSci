@@ -1,0 +1,56 @@
+Symbol Table
+Symbol     Value      Type
+------     -----      ----
+X          0004         R
+XSUM       0013         R
+LOOP2      0008         R
+LOOP       0008         R
+SUM3       0000         R
+MAIN       0007         R
+A          0001         A
+B          0002         A
+C          0003         A
+ 
+ 
+Counter   Code    Source Code
+-------   ----    -----------
+                  This program has several errors                                                 
+                  *** Illegal Opcode
+                  A       =     1                                                                 
+                  B       =     2                                                                 
+                  C       =     3                                                                 
+  0000    F001    SUM3    LDDL  A                                                                 
+  0001    F202            ADDL  B                                                                 
+                  3456    QQQ   4     bad label, bad opcode                                       
+                  *** Illegal Opcode
+  0002    F203            ADDL  C                                                                 
+  0003            ALonggggggggggggggggggggggggggggggggggggggLabel                                 
+                  *** Invalid Label
+  0003    FEC0            RETN                                                                    
+                  *                                                                               
+  0004            X       DS    3                                                                 
+                  *                                                                               
+  0007    8FFC    MAIN    LRA   X                                                                 
+                          POPQ        bad opcode                                                  
+                  *** Illegal Opcode
+  0008            LOOP                                                                            
+  0008    FC80    LOOP2   PSHA                                                                    
+  0009    8FFB            LRA   X+1                                                               
+  000A    FD40    N12345682920      POPI   bad label                                              
+                  *** Invalid Label
+  000B    FC80            PSHA                                                                    
+  000C    8FF9            LRA   X+2                                                               
+                  SUM3    DCZ   11         duplicate definition, bad opcode                       
+                  *** Illegal Opcode
+  000D    FC80            PSHA                                                                    
+  000E    9FF1            CALL  SUM3                                                              
+                  NZ(2)   JJJI  MAIN       bad label, bad opcode                                  
+                  *** Illegal Opcode
+  000F    1003            STDR  XSUM                                                              
+  0010    F803            INSP  3                                                                 
+  0011    F002    MAIN    LDDL  B          duplicate definition                                   
+                  *** Multiply Defined Symbol
+  0012    FEC0            RETN                                                                    
+                  *                                                                               
+  0013            XSUM    DS    1                                                                 
+  0014                    END   MAIN                                                              

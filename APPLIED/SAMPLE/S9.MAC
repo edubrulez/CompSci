@@ -1,0 +1,162 @@
+MAIN    LDDR    A                                                               
+        ADDR    B                                                               
+        ADDR    C    dr <-- a+b+c                                               
+        STDR    SUM                                                             
+        RETN                                                                    
+SUM     DS      1                                                               
+A       DC      32                                                              
+B       DC      48                                                              
+C       DC      64                                                              
+DATA    DS      2000                                                            
+DATA2   DS      10                                                              
+        DC      DATA                                                            
+        DC      DATA2                                                           
+        EXT     DATA                                                            
+        EXT     DATA2                                                           
+F       DX      HELLO                                                           
+G       DX      B2345                                                           
+        DC      F-100                                                           
+        DC      G+30                                                            
+        EXT     G                                                               
+        EXT     MAIN                                                            
+C5     DC     5                                                                 
+P10    DC     10000                                                             
+       DC     1000                                                              
+       DC     100                                                               
+       DC     10                                                                
+       DC     1                                                                 
+C240   DC     240                                                               
+C96    DC     96                                                                
+C1     DC     1                                                                 
+S      =      6                                                                 
+X      =      5                                                                 
+I      =      3                                                                 
+ON     =      2                                                                 
+D      =      1                                                                 
+TEMP   =      0                                                                 
+*                                                                               
+CONV10 DESP   4                                                                 
+       EXT    CONV10                                                            
+       LDDL   X                                                                 
+       JNZE   NZE                                                               
+       LDAL   S                                                                 
+       LDDR   C240                                                              
+       STDI                                                                     
+       ADAR   C1                                                                
+       LCO    0                                                                 
+       STDI                                                                     
+       JUMP   EXIT                                                              
+*                                                                               
+NZE    JPOS   POS                                                               
+       LDAL   S                                                                 
+       LDDR   C96                                                               
+       STDI                                                                     
+       ADAR   C1                                                                
+       STAL   S                                                                 
+*                                                                               
+POS    LCO    0                                                                 
+       STDL   ON                                                                
+*                                                                               
+       STDL   I                                                                 
+FOR    SBDR   C5                                                                
+       JPOS   EXIT                                                              
+       LCO    0                                                                 
+       STDL   D                                                                 
+*                                                                               
+WHILE  LRA    P10                                                               
+       ADAL   I                                                                 
+       LDDI                                                                     
+       STDL   TEMP                                                              
+       SBDL   X                                                                 
+       JPOS   ENDWHILE                                                          
+       LCO    1                                                                 
+       ADDL   D                                                                 
+       STDL   D                                                                 
+       LDDL   X                                                                 
+       SBDL   TEMP                                                              
+       STDL   X                                                                 
+       JUMP   WHILE                                                             
+*                                                                               
+ENDWHILE LDDL   ON                                                              
+       JPOS   WRITE                                                             
+       LDDL   D                                                                 
+       JZER   ENDFOR                                                            
+*                                                                               
+WRITE  LDDL   D                                                                 
+       ADDR   C240                                                              
+       LDAL   S                                                                 
+       STDI                                                                     
+       ADAR   C1                                                                
+       STAL   S                                                                 
+       LCO    1                                                                 
+       STDL   ON                                                                
+*                                                                               
+ENDFOR LCO    1                                                                 
+       ADDL   I                                                                 
+       STDL   I                                                                 
+       JUMP   FOR                                                               
+*                                                                               
+EXIT   LDAL   S                                                                 
+       LCO    0                                                                 
+       STDI                                                                     
+       INSP   4                                                                 
+       RETN                                                                     
+*                                                                               
+S0    =     1                                                                   
+OUTPORT DC  -1                                                                  
+PSTRING LDAL S0                                                                 
+      EXT   PSTRING                                                             
+PLOOP LDDI                                                                      
+      JZER  DONEPS                                                              
+      LDAR  OUTPORT                                                             
+      STDI                                                                      
+      LDAL  S0                                                                  
+      ADAR  C1                                                                  
+      STAL  S0                                                                  
+      JUMP  PLOOP                                                               
+DONEPS RETN                                                                     
+S7    DS     10                                                                 
+I2    =      0                                                                  
+C100  DC     100                                                                
+BCONV DX     CONV10X                                                            
+BPSTR DX     PSTRINGX                                                           
+PI    DESP   1                                                                  
+      EXT    PI                                                                 
+      LCO    0                                                                  
+      STDL   I2                                                                 
+LOOP  LDDL   I2                                                                 
+      SBDR   C100                                                               
+      JPOS   EXIT                                                               
+      LRA    S7                                                                 
+      PSHD                                                                      
+      LDDL   I2                                                                 
+      PSHD                                                                      
+      LDAR   BCONV                                                              
+      CLLI                                                                      
+      INSP   2                                                                  
+      LRA    S7                                                                 
+      PSHD                                                                      
+      LDAR   BPSTR                                                              
+      CLLI                                                                      
+      INSP   1                                                                  
+      LCO    1                                                                  
+      ADDL   I2                                                                 
+      STDL   I2                                                                 
+      JUMP   LOOP                                                               
+      ADAR   C100                                                               
+      SBDR   BCONV                                                              
+      LDDR   PI                                                                 
+*                                                                               
+EXIT2 INSP   1                                                                  
+      RETN                                                                      
+      DC     EXIT                                                               
+      DC     LOOP                                                               
+      DC     EXIT2-LOOP                                                         
+      DC     BCONV                                                              
+      DC     CONV10                                                             
+      DC     BCONV-CONV10                                                       
+      DC     CONV10-BCONV                                                       
+      LDDR   ABC                                                                
+      DS     2047                                                               
+ABC   DC     20                                                                 
+      END    PI                                                                 

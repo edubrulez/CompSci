@@ -1,0 +1,7 @@
+uofakron ds  5                                                                  
+         ext uofakron                                                           
+beta     dc  3                                                                  
+         ext beta                                                               
+alpha    ds 2                                                                   
+         ext alpha                                                              
+         end                                                                    

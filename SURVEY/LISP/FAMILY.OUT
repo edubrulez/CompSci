@@ -1,0 +1,22 @@
+-> (jane.jones gary.jackson)
+-> (julie.smith keith.smith bill.smith bonnie.smith tom.jackson gary.jackson)
+-> (gary.jackson)
+-> (marla.adams tom.jones sally.jones steve.jones bob.peters jane.peters jane.jones alice.peters mark.peters)
+-> (julie.smith)
+-> (marla.adams julie.smith keith.smith bill.smith bonnie.smith joan.jackson tom.jackson tom.jones sally.jones steve.jones bob.peters jane.peters gary.jackson jane.jones alice.peters mark.peters)
+-> nil
+-> nil
+-> 3
+-> 1
+-> jane.jones
+-> tom.jackson
+-> nil
+-> (no relation)
+-> (no relation)
+-> (sister)
+-> (brother)
+-> (father)
+-> (great grand niece)
+-> (great great great grand daughter)
+-> (2 cousin)
+-> (2 cousin removed 2)

@@ -1,0 +1,17 @@
+Symbol Table
+Symbol     Value      Type
+------     -----      ----
+UOFAKRON   0000         D
+ALPHA      0006         D
+BETA       0005         D
+ 
+ 
+Counter   Code    Source Code
+-------   ----    -----------
+  0000            uofakron ds  5                                                                  
+                           ext uofakron                                                           
+  0005    0003    beta     dc  3                                                                  
+                           ext beta                                                               
+  0006            alpha    ds 2                                                                   
+                           ext alpha                                                              
+  0008                     end                                                                    

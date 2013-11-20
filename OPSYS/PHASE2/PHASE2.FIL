@@ -1,0 +1,20 @@
+#                                                                               
+#   Use this make file to compile and run phase 2 of your operating             
+#   systems project.  Invoke the make file by entering the command              
+#   'make -f phase2.file.d'                                                     
+#                                                                               
+run : PHASE2.TEXT.A                                                             
+!   GENIPL PHASE2                                                               
+!   IPL 00C STOP                                                                
+PHASE2.TEXT.A : MEMORY.TEXT.A PROCESS.TEXT.A UTILITY.TEXT.A\                    
+                426TEST2.TEXT.A                                                 
+!   EXEC LNKB PHASE2 PROCESS MEMORY UTILITY 426TEST2 SNAP PF\                   
+     BREAKPT PH2START DUMMY                                                     
+426TEST2.TEXT.A: 426TEST2.C   MEMORY.H.A PROCESS.H.A                            
+!   CW 426TEST2 (ALIGN                                                          
+MEMORY.TEXT.A : MEMORY.C.A MEMORY.H.A PROCESS.H.A                               
+!   CW MEMORY (ALIGN                                                            
+PROCESS.TEXT.A : PROCESS.C.A PROCESS.H.A MEMORY.H.A                             
+!   CW PROCESS (ALIGN                                                           
+UTILITY.TEXT.A : UTILITY.ASSEMBLE.A                                             
+!   ASMC UTILITY                                                                

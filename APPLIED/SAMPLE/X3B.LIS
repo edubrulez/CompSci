@@ -1,0 +1,66 @@
+Symbol Table
+Symbol     Value      Type
+------     -----      ----
+BODY       0075         R
+C1         0068         R
+N          0069         R
+S1         0000         E
+S3         0000         E
+C10        008B         R
+MAIN       006B         R
+AAA        006A         R
+AAB        0064         R
+AAC        0065         R
+ALOOP      006C         R
+AP1        0066         R
+AP3        0067         R
+A          0000         D
+B          0000         E
+C          0000         E
+ 
+ 
+Counter   Code    Source Code
+-------   ----    -----------
+  0000            a      ds     100                                                               
+                         ext    a                                                                 
+  0064    0000    aab    dx     b                                                                 
+  0065    0000    aac    dx     c                                                                 
+  0066    0000    ap1    dx     s1                                                                
+  0067    0000    ap3    dx     s3                                                                
+  0068    0001    c1     dc     1                                                                 
+  0069    0064    n      dc     100                                                               
+  006A    0000    aaa    dc     a                                                                 
+  006B    8F94    main   lra    a                                                                 
+  006C    FB00    aloop  lco    0                                                                 
+  006D    FDC0           stdi                                                                     
+  006E    6FF9           adar   c1                                                                
+  006F    0FF9           lddr   n                                                                 
+  0070    3FF7           sbdr   c1                                                                
+  0071    1FF7           stdr   n                                                                 
+  0072    D002           jneg   body                                                              
+  0073    B001           jzer   body                                                              
+  0074    CFF7           jump   aloop                                                             
+  0075    0015    body   lddr   c10                                                               
+  0076    FC00           pshd                                                                     
+  0077    4FEC           ldar   aab                                                               
+  0078    FC80           psha                                                                     
+  0079    8F86           lra    a                                                                 
+  007A    FC80           psha                                                                     
+  007B    4FEB           ldar   ap3                                                               
+  007C    FE80           clli                                                                     
+  007D    F803           insp   3                                                                 
+  007E    000C           lddr   c10                                                               
+  007F    FC00           pshd                                                                     
+  0080    4FE4           ldar   aac                                                               
+  0081    FC80           psha                                                                     
+  0082    4FE7           ldar   aaa                                                               
+  0083    6007           adar   c10                                                               
+  0084    FC80           psha                                                                     
+  0085    4FE1           ldar   ap3                                                               
+  0086    FE80           clli                                                                     
+  0087    F803           insp   3                                                                 
+  0088    4FDD           ldar   ap1                                                               
+  0089    FE80           clli                                                                     
+  008A    FEC0           retn                                                                     
+  008B    000A    c10    dc     10                                                                
+  008C                   end    main                                                              

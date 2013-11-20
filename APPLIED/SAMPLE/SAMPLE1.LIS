@@ -1,0 +1,21 @@
+Symbol Table
+Symbol     Value      Type
+------     -----      ----
+MAIN       0000         R
+SUM        0004         R
+A          0005         R
+B          0006         R
+C          0007         R
+ 
+ 
+Counter   Code    Source Code
+-------   ----    -----------
+  0000    0004    MAIN    LDDR    A                                                               
+  0001    2004            ADDR    B                                                               
+  0002    2004            ADDR    C    dr <-- a+b+c                                               
+  0003    1000            STDR    SUM                                                             
+  0004            SUM     DS      1                                                               
+  0005            A       DS      1                                                               
+  0006            B       DS      1                                                               
+  0007            C       DS      1                                                               
+  0008                    END     MAIN                                                            
