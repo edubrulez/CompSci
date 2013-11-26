@@ -10,6 +10,9 @@
     include additions to quantity, displaying specific parts, inserting parts,
     displaying a supplier list (or lists) or master list, removing parts, and  
     exiting with or without saving the updated list to the data file.
+
+  usage:
+	./part 50 part.in < partrq.in
 */
 
 #include <stdlib.h>
