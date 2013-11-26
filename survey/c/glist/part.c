@@ -12,6 +12,7 @@
     exiting with or without saving the updated list to the data file.
 */
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include "glist.h"
@@ -196,20 +197,22 @@ void KillInv(glist m, glist *s, int MaxSupNum)
 
 main(int argc, char *argv[])
 {
+    const int _maxLineLength = 50;
+
  glist master; /* master list */
  glist *suppliers; /* array of supplier lists */
  int found, supplier, i, MaxSuppNum = atoi(argv[1]);
    /* found is a return value from seek. supplier is a supplier number.
         MaxSuppNum is maximum number of suppliers given from command-line
         entry.  i is a loop index. */ 
- char st[50], partid[9];
+ char st[_maxLineLength], partid[9];
    /* st is a string read from stdin.  partid is a partnumber */
  suppliers = (glist *)malloc(MaxSuppNum * sizeof(glist));
  master = createlist();
  for (i=0; i<MaxSuppNum; i++)
    suppliers[i] = createlist();
  getinv(master, suppliers, argv[2], MaxSuppNum);
- while ((gets(st) != NULL) && (st[0] != 'X') && (st[0] != 'x') && (st[0]!= 'Q')            && (st[0] != 'q'))
+ while ((fgets(st, _maxLineLength, stdin) != NULL) && (st[0] != 'X') && (st[0] != 'x') && (st[0]!= 'Q') && (st[0] != 'q'))
    {
     found = 0;
     switch (st[0])
